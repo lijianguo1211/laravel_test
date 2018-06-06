@@ -24,6 +24,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::resource('article', 'ArticleController');//文章管理
     Route::resource('type','TypeController');//添加文章分类
 
+    Route::any('map','IndexController@map');//调用百度地图接口
+    Route::any('map_api','IndexController@map_api');//调用百度地图接口
+
 });
 
 Route::get('hello',function(){
