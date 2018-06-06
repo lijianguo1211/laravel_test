@@ -4,6 +4,12 @@
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
         <legend>分类列表</legend>
     </fieldset>
+    <div class="table-header">
+        <a href="/admin/type/create">
+            <i class="menu-icon fa fa-plus orange"></i>
+            <span class="menu-text orange"> 添加分类 </span>
+        </a>
+    </div>
     <div class="layui-form">
         <table class="layui-table">
             <colgroup>
@@ -28,13 +34,27 @@
             @foreach($list as $vo)
                 <tr>
                     <td>{{$vo->type_id}}</td>
-                    <td>{{$vo->type_name}}</td>
+                    <td>{{str_repeat('--',$vo->level)}}{{$vo->type_name}}</td>
                     <td>{{$vo->type_pid}}</td>
                     <td>{{$vo->type_recommend}}</td>
                     <td>{{$vo->type_online}}</td>
                     <td>{{$vo->type_addtime}}</td>
                     <td>{{$vo->type_updatetime}}</td>
-                    <td>删除</td>
+                    <td>
+                        <div class="hidden-sm hidden-xs action-buttons">
+                            <a class="blue" href="/admin/type/{{$vo->type_id}}">
+                                <i class="ace-icon fa fa-search-plus bigger-130"></i>
+                            </a>
+
+                            <a class="green" href="/admin/type/{{$vo->type_id}}/edit">
+                                <i class="ace-icon fa fa-pencil bigger-130"></i>
+                            </a>
+
+                            <a class="red" href="javascript:void(0);" onclick="">
+                                <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                            </a>
+                        </div>
+                    </td>
                 </tr>
             @endforeach
             </tbody>

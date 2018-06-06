@@ -19,11 +19,11 @@ class Type extends Model
         return $status[$value];
     }
 
-    public function setTypeOnlineAttribute($value)
+    /*public function setTypeOnlineAttribute($value)
     {
         $status = ['否'=>0,'是'=>1];
         return $status[$value];
-    }
+    }*/
 
     public function getTypeRecommendAttribute($value)
     {
@@ -31,9 +31,25 @@ class Type extends Model
         return $status[$value];
     }
 
-    public function setTypeRecommendAttribute($value)
+   /* public function setTypeRecommendAttribute($value)
     {
         $status = ['否'=>0,'是'=>1];
         return $status[$value];
+    }*/
+
+    //调取分类
+    public function getType($pid=0,$target = [])
+    {
+        $type = $this->where('type_pid','=',$pid)->get();
+        //$id = $type['type_id'];
+        static $n = 1;
+        foreach($type as $k => $v) {
+            $v->level = $n;
+            $target[$v->type_id] = $v;
+            $n++;
+            $target = $this->getType($v->type_id,$target);
+            $n--;
+        }
+        return $target;
     }
 }

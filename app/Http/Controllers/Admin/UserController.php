@@ -37,6 +37,12 @@ class UserController extends BaseController
     {
         $user_list = User::select(['user_id','user_name','user_account','user_nickname','user_email','user_mobile'])->get();
         //var_dump($user_list);exit;
-        return view('admin/user/list',compact('list'));
+        return view('admin/user/list',compact('user_list'));
+    }
+
+    //添加管理员
+    public function add()
+    {
+        return view('admin/user/add');
     }
 }

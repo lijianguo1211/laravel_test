@@ -4,6 +4,12 @@
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
         <legend>管理员列表</legend>
     </fieldset>
+    <div class="table-header">
+        <a href="/admin/adduser">
+            <i class="menu-icon fa fa-plus orange"></i>
+            <span class="menu-text orange"> 添加管理员 </span>
+        </a>
+    </div>
     <div class="layui-form">
         <table class="layui-table">
             <colgroup>
@@ -24,7 +30,7 @@
             </tr>
             </thead>
             <tbody>
-            @foreach($list as $vo)
+            @foreach($user_list as $vo)
             <tr>
                 <td>{{$vo->user_id}}</td>
                 <td>{{$vo->user_name}}</td>
@@ -32,7 +38,21 @@
                 <td>{{$vo->user_nickname}}</td>
                 <td>{{$vo->user_email}}</td>
                 <td>{{$vo->user_mobile}}</td>
-                <td>删除</td>
+                <td>
+                    <div class="hidden-sm hidden-xs action-buttons">
+                        <a class="blue" href="#">
+                            <i class="ace-icon fa fa-search-plus bigger-130"></i>
+                        </a>
+
+                        <a class="green" href="">
+                            <i class="ace-icon fa fa-pencil bigger-130"></i>
+                        </a>
+
+                        <a class="red" href="javascript:void(0);" onclick="">
+                            <i class="ace-icon fa fa-trash-o bigger-130"></i>
+                        </a>
+                    </div>
+                </td>
             </tr>
             @endforeach
             </tbody>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>测试</title>
     <link rel="stylesheet" href="/layui/css/layui.css">
-    {{--<link rel="stylesheet" href="/layui/css/layui.css">--}}
+    <link rel="stylesheet" href="/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">

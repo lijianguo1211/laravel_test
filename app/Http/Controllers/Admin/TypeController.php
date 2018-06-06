@@ -11,7 +11,10 @@ class TypeController extends Controller
     //添加文章分类表单
     public function create()
     {
-        return view('admin/type/create');
+        $type = new Type();
+        $types = $type->getType();
+        //var_dump($types);exit;
+        return view('admin/type/create',compact('types'));
     }
 
     //添加文章分类提交保存
@@ -24,6 +27,8 @@ class TypeController extends Controller
         if(empty(trim($name)) || !isset($pid)) {
             return back()->with(['status'=>0,'msg'=>'参数不全']);
         }
+        empty($online) ? $online=0 : $online;
+        empty($recommend) ? $recommend=0 : $recommend;
         $data = [
             'type_name'         =>$name,
             'type_pid'          =>$pid,
@@ -42,17 +47,22 @@ class TypeController extends Controller
     //查看分类
     public function index()
     {
-        $list = Type::all();//select()可以指定字段
-        if($list == null) {
+        $type = new Type();
+        $types = $type->getType();
+        if($types == null) {
             return back()->with(['status'=>0,'msg'=>'没有数据或查询失败']);
         }
-        return view('admin/type/index',['list'=>$list]);
+        return view('admin/type/index',['list'=>$types]);
     }
 
     //编辑分类
-    public function edit()
+    public function edit(Request $request,$id)
     {
-
+        if(empty($id)) return back()->with(['status'=>0,'msg'=>'参数不对']);
+        $type_list = Type::where(['type_id'=>$id])->first();
+        //var_dump($type_list);exit;
+        if($type_list == null) return back()->with(['status'=>0,'msg'=>'没有查询结果']);
+        return view('admin/type/edit',compact('type_list'));
     }
 
     //编辑分类提交
@@ -62,9 +72,13 @@ class TypeController extends Controller
     }
 
     //查看具体某一个分类
-    public function show()
+    public function show(Request $request,$id)
     {
-
+        if(empty($id)) return back()->with(['status'=>0,'msg'=>'参数不对']);
+        $type_list = Type::where(['type_id'=>$id])->first();
+        //var_dump($type_list);exit;
+        if($type_list == null) return back()->with(['status'=>0,'msg'=>'没有查询结果']);
+        return view('admin/type/show',compact('type_list'));
     }
 
 }
