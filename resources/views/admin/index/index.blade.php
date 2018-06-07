@@ -4,7 +4,7 @@
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
         <legend>控制台</legend>
     </fieldset>
-    <form class="layui-form" action="{{url('admin/city_api)}}" method="post">
+    <form class="layui-form" action="{{url('admin/city_api')}}" method="post">
         <div class="layui-form-item" id="csrf">
             <label class="layui-form-label">城市搜索</label>
             <div class="layui-input-inline">
