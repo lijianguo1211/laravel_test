@@ -28,7 +28,7 @@
                     <dd><a href="{{url('admin/type'}}">分类显示</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="{{url('admin/map}}">百度api测试</a></li>
+            <li class="layui-nav-item"><a href="{{url('admin/map'}}">百度api测试</a></li>
             <li class="layui-nav-item"><a href="">发布商品</a></li>
         </ul>
     </div>
