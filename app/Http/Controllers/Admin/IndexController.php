@@ -32,8 +32,26 @@ class IndexController extends BaseController
         $ak = 'HnDqo6bWWRQtzyRdqB7v8imEI3gmP289';
         $url = "http://api.map.baidu.com/place/v2/suggestion?query=$query&region=$region&city_limit=true&output=json&ak=$ak";
         $jsonArr = $this->getcurl($url);
-        //dump($jsonArr);exit;
+        dump($jsonArr);exit;
         return view('admin/index/map_api',compact($jsonArr));
+    }
+
+    public function city_api(Request $request)
+    {
+        $city = $request->get('city');
+        if (empty(trim($city))) {
+            return back()->with(['status' => 0, 'msg' => '请输入查询对象']);
+        }
+        $key = '38e2e313c21c40c2948987f3ee01df7b';
+        //$data = ['world','cn','us,scenic','cn,us,ru'];//查询范围选择,默认选择全世界
+        $group = 'world';
+        $city = urlencode($city);
+        $url = "https://search.heweather.com/find?location=" . $city . "&key=" . $key . "&group=" . $group;
+        $jsonArr = $this->getCurlHttps($url);
+        $arr = json_decode($jsonArr,true);
+        if ($arr != 1) {
+            return back()->with(['status' => 0, 'msg' => '查询数据失败']);
+        }
     }
 }
 
