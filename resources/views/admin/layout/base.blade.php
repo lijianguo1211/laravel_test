@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>测试</title>
-    <link rel="stylesheet" href="{{URL::asset('/layui/css/layui.css)}}">
-    <link rel="stylesheet" href="{{URL::asset('/font-awesome/4.5.0/css/font-awesome.min.css)}}">
+    <link rel="stylesheet" href="{{URL::asset('/layui/css/layui.css')}}">
+    <link rel="stylesheet" href="{{URL::asset('/font-awesome/4.5.0/css/font-awesome.min.css')}}">
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -26,10 +26,10 @@
 
    @include('admin/layout/footer')
 </div>
-<script src="{{URL::asset('/js/jquery-3.1.1.js)}}"></script>
-<script src="{{URL::asset('/layui/layui.js)}}"></script>
-<script src="{{URL::asset('/layui/layui.all.js)}}"></script>
-<script src="{{URL::asset('/layui/lay/modules/layer.js)}}"></script>
+<script src="{{URL::asset('/js/jquery-3.1.1.js')}}"></script>
+<script src="{{URL::asset('/layui/layui.js')}}"></script>
+<script src="{{URL::asset('/layui/layui.all.js')}}"></script>
+<script src="{{URL::asset('/layui/lay/modules/layer.js')}}"></script>
 <script>
     //JavaScript代码区域
     layui.use('element', function(){
