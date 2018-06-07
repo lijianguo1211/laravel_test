@@ -2,7 +2,7 @@
     <div class="layui-side-scroll">
         <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
         <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-            <li class="layui-nav-item"><a href="{{url('admin/index'}}">console</a></li>
+            <li class="layui-nav-item"><a href="{{url('admin/index')}}">console</a></li>
             {{--layui-nav-itemed--}}
             <li class="layui-nav-item">
                 <a class="" href="javascript:;">管理员</a>
