@@ -18,7 +18,7 @@
                 <dl class="layui-nav-child">
                     <dd><a href="{{url('admin/article/create')}}">添加文章</a></dd>
                     <dd><a href="javascript:;">文章列表</a></dd>
-                    <dd><a href="{{url('admin/type/create'}}">添加文章分类</a></dd>
+                    <dd><a href="{{url('admin/type/create')}}">添加文章分类</a></dd>
                 </dl>
             </li>
             <li class="layui-nav-item">
