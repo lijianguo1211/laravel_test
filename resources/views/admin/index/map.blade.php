@@ -3,7 +3,7 @@
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
         <legend>调用百度接口测试</legend>
     </fieldset>
-    <form class="layui-form" action="/admin/map_api">
+    <form class="layui-form" action="{{url('admin/map_api')}}">
         <div class="layui-form-item">
             <label class="layui-form-label">地点</label>
             <div class="layui-input-block">
