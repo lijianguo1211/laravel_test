@@ -11,6 +11,19 @@
                 <input type="text" name="city" id="city" lay-verify="title" placeholder="请输入城市" class="layui-input">
             </div>
         </div>
+
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">选择查询问题</label>
+                <div class="layui-input-inline">
+                    <select name="type">
+                        <option value="">请选择问题</option>
+                        <option value="1">天气</option>
+                        <option value="2">城市</option>
+                    </select>
+                </div>
+            </div>
+
         @csrf
         <div class="layui-form-item">
             <label class="layui-form-label"></label>

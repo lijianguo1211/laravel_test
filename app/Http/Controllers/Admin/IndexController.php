@@ -43,11 +43,18 @@ class IndexController extends BaseController
             return back()->with(['status' => 0, 'msg' => '请输入查询对象']);
         }
         $key = '38e2e313c21c40c2948987f3ee01df7b';
-        //$data = ['world','cn','us,scenic','cn,us,ru'];//查询范围选择,默认选择全世界
-        $group = 'world';
         $city = urlencode($city);
-        $url = "https://search.heweather.com/find?location=" . $city . "&key=" . $key . "&group=" . $group;
-        $jsonArr = $this->getCurlHttps($url);
+        if($request->get('type') == 1) {
+            //天气
+            $url = "https://free-api.heweather.com/s6/weather/forecast?location=".$city."&key=".$key;
+            $jsonArr = $this->getCurlHttps($url);
+        } elseif ($request->get('type') == 2) {
+            //城市
+            //$data = ['world','cn','us,scenic','cn,us,ru'];//查询范围选择,默认选择全世界
+            $group = 'world';
+            $url = "https://search.heweather.com/find?location=" . $city . "&key=" . $key . "&group=" . $group;
+            $jsonArr = $this->getCurlHttps($url);
+        }
         $arr = json_decode($jsonArr,true);
         if ($arr != 1) {
             return back()->with(['status' => 0, 'msg' => '查询数据失败']);
