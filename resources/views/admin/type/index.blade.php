@@ -5,7 +5,7 @@
         <legend>分类列表</legend>
     </fieldset>
     <div class="table-header">
-        <a href="/admin/type/create">
+        <a href="{{url('admin/type/create')}}">
             <i class="menu-icon fa fa-plus orange"></i>
             <span class="menu-text orange"> 添加分类 </span>
         </a>
