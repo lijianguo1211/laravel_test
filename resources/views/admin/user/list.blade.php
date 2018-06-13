@@ -5,7 +5,7 @@
         <legend>管理员列表</legend>
     </fieldset>
     <div class="table-header">
-        <a href="/admin/adduser">
+        <a href="{{url('admin/adduser')}}">
             <i class="menu-icon fa fa-plus orange"></i>
             <span class="menu-text orange"> 添加管理员 </span>
         </a>
