@@ -12,19 +12,12 @@
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">发送者</label>
-            <div class="layui-input-block">
-                <input type="text" name="sender" id="sender" class="layui-input">
-                <div style="padding-bottom: 15px"></div>
-                <input type="text" name="msg" id="msg" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
             <label class="layui-form-label"></label>
             <div class="layui-input-block">
                 <a class="layui-btn" id="btns">立即提交</a>
             </div>
         </div>
+        @csrf
     </form>
 
 @endsection
@@ -33,12 +26,12 @@
         $(function(){
             $("#btns").click(function(){
                 $.ajax({
-                    url:"{{url('admin/send')}}",
+                    url:"{{url('admin/ship')}}",
                     type:"post",
-                    data:{'address':$("#address").val(),'sender':$("#sender").val(),'msg':$("#msg").val(),'_token':'@csrf'},
+                    data:{'address':$("#address").val()},
                     dataType:"json",
                     success:function(res) {
-                        console.log(res);
+                        console.log(123);
                     }
                 });
             });
