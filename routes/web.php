@@ -27,8 +27,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::any('map','IndexController@map');//调用百度地图接口
     Route::any('map_api','IndexController@map_api');//调用百度地图接口
     Route::post('city_api','IndexController@city_api');//城市搜素api
-    Route::get('email','EmailController@index');
-    Route::post('ship','OrderController@ship');
+
+    Route::get('email','EmailController@index');//邮件相关
+    Route::post('ship','OrderController@ship');//邮件相关
 
 });
 

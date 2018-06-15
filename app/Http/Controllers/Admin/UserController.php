@@ -44,7 +44,7 @@ class UserController extends BaseController
     //添加管理员
     public function add()
     {
-
+        //管理员添加页面
         return view('admin/user/add');
     }
 }
