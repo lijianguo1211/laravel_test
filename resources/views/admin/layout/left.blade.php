@@ -29,6 +29,13 @@
             </li>
             <li class="layui-nav-item"><a href="{{url('admin/map')}}">百度api测试</a></li>
             <li class="layui-nav-item"><a href="">发布商品</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">新闻推荐</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="{{url('admin/new/index')}}">查看新闻</a></dd>
+                    <dd><a href="{{url('')}}"></a></dd>
+                </dl>
+            </li>
         </ul>
     </div>
 </div>

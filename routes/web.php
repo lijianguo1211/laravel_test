@@ -32,6 +32,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('email','EmailController@index');//邮件相关
     Route::post('ship','OrderController@ship');//邮件相关
 
+    Route::get('new/index','NewController@index');//搜索新闻
+    Route::post('search','NewController@search');//搜索新闻展示
+
 });
 
 Route::get('hello',function(){
