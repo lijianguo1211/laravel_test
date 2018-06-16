@@ -10,7 +10,7 @@ class Type extends Model
     public $timestamps = true;
     const CREATED_AT = 'type_addtime';
     const UPDATED_AT = 'type_updatetime';
-
+    //只允许添加在里面的可以添加
     protected $fillable = ['type_name','type_pid','type_online','type_recommend'];
 
     public function getTypeOnlineAttribute($value)

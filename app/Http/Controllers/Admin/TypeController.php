@@ -66,9 +66,25 @@ class TypeController extends Controller
     }
 
     //编辑分类提交
-    public function save()
+    public function update(Request $request,$id)
     {
-
+        //var_dump($request->all());exit;
+        if(empty($id)) return back()->with(['status'=>0,'msg'=>'参数不对']);
+        $type_model = new Type();
+        $info = $request->all();
+        $name = $info['name'];$title = $info['title'];$online = $info['online'];$recommend = $info['recommend'];
+        $data = [
+            'type_name' => $name,
+            'type_pid'=> $title,
+            'type_online' => $online,
+            'type_recommend' => $recommend
+        ];
+        $type = $type_model::where(['type_id'=>$id])->update($data);
+        //更新语句
+        if(!$type) {
+            return back()->with(['status'=>0,'msg'=>'修改失败']);
+        }
+        return redirect('admin/type')->with(['status'=>1,'msg'=>'修改完成']);
     }
 
     //查看具体某一个分类
@@ -81,4 +97,28 @@ class TypeController extends Controller
         return view('admin/type/show',compact('type_list'));
     }
 
+    //删除分类
+    public function del($id)
+    {
+        //先查询是否有记录,在查询它下面是否有子分类,如果有子分类,就给一个异常
+        $type_model = new Type();
+        $type = $type_model::where(['type_id'=>$id])->first();
+        if($type->first() == null) {
+            $data = ['status'=>0,'msg'=>'没有查询结果'];
+            $this->ajaxReturn($data);
+        }
+        $type_child = $type_model::where(['type_pid'=>$type['type_id']])->first();
+        //var_dump($type_child->toArray());exit;
+        if($type_child->first() != null) {
+           $data = ['status'=>0,'msg'=>'请先删除它下面的子分类,再执行本次删除'];
+           $this->ajaxReturn($data);
+        }
+        $type_del = $type_model::where(['type_id'=>$id])->delete();
+        if($type_del) {
+            $data = ['status'=>1,'msg'=>'删除分类成功'];
+        } else {
+            $data = ['status'=>0,'msg'=>'删除分类失败'];
+        }
+        $this->ajaxReturn($data);
+    }
 }

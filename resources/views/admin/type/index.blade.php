@@ -50,7 +50,7 @@
                                 <i class="ace-icon fa fa-pencil bigger-130"></i>
                             </a>
 
-                            <a class="red" href="javascript:void(0);" onclick="">
+                            <a class="red" href="javascript:void(0);" onclick="del({{$vo->type_id}})">
                                 <i class="ace-icon fa fa-trash-o bigger-130"></i>
                             </a>
                         </div>
@@ -60,4 +60,30 @@
             </tbody>
         </table>
     </div>
+@endsection
+@section('js')
+    <script>
+        function del(id) {
+            var url = "{{url('admin/type_del')}}/"+id;
+            layer.confirm('确认删除?',{
+                btn: ['确定','取消'] //按钮
+            },function(){
+                $.ajax({
+                    url:url,
+                    type:'get',
+                    success:function (resn) {
+                        console.log(resn);
+                        var res = JSON.parse(resn);
+                        if(res.status == 1){
+                            layer.msg( res.msg, {icon: 1});
+                            location.href = "{{url('admin/type')}}";
+                        }else {
+                            layer.msg( res.msg, {icon: 2});
+                        }
+                    }
+                });
+            },function(){
+                //取消
+            })}
+    </script>
 @endsection

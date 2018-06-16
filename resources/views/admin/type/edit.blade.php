@@ -3,11 +3,11 @@
     <fieldset class="layui-elem-field layui-field-title" style="margin-top: 30px;">
         <legend>修改文章分类</legend>
     </fieldset>
-    <form class="layui-form" action="/admin/type" method="post">
+    <form class="layui-form" action="{{url('admin/type')}}{{'/' .$type_list->type_id}}" method="post">
         <div class="layui-form-item">
             <label class="layui-form-label">分类标题</label>
             <div class="layui-input-block">
-                <input type="text" name="title" required  lay-verify="required" placeholder="请输入分类标题" autocomplete="off" class="layui-input" value="{{$type_list->type_name}}">
+                <input type="text" name="name" required  lay-verify="required" placeholder="请输入分类标题" autocomplete="off" class="layui-input" value="{{$type_list->type_name}}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -37,7 +37,8 @@
         <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
         </div>
-        {{csrf_field()}}
+        @method('PUT')
+        @csrf
     </form>
 
 
