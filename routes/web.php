@@ -36,6 +36,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('new/index','NewController@index');//搜索新闻
     Route::post('search','NewController@search');//搜索新闻展示
 
+    Route::get('bd/index','BaiduController@index');//百度语音合成
+    Route::post('bd/save','BaiduController@save');//提交语音
+
 });
 
 Route::get('hello',function(){

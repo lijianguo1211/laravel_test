@@ -33,7 +33,7 @@
                 <a href="javascript:;">新闻推荐</a>
                 <dl class="layui-nav-child">
                     <dd><a href="{{url('admin/new/index')}}">查看新闻</a></dd>
-                    <dd><a href="{{url('')}}"></a></dd>
+                    <dd><a href="{{url('admin/bd/index')}}">语音合成</a></dd>
                 </dl>
             </li>
         </ul>

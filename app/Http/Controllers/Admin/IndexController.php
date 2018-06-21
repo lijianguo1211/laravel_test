@@ -30,7 +30,7 @@ class IndexController extends BaseController
             return back()->with(['status'=>0,'msg'=>'缺少参数']);
         }
         $ak = 'HnDqo6bWWRQtzyRdqB7v8imEI3gmP289';
-        $url = "http://api.map.baidu.com/place/v2/suggestion?query=$query&region=$region&city_limit=true&output=json&ak=$ak";
+        $url = "http://api.map.bd.com/place/v2/suggestion?query=$query&region=$region&city_limit=true&output=json&ak=$ak";
         $jsonArr = $this->getcurl($url);
         dump($jsonArr);exit;
         return view('admin/index/map_api',compact($jsonArr));
