@@ -19,7 +19,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::post('doLogin','UserController@login');//登录提交
     Route::get('index','IndexController@index');//首页
     Route::get('list','UserController@list');//管理员列表
-    Route::get('adduser','UserController@add');
+    Route::get('adduser','UserController@add');//添加管理员显示
+    Route::post('add_admin','UserController@add_admin');//提交管理员
 
     Route::resource('article', 'ArticleController');//文章管理
     Route::resource('type','TypeController');//添加文章分类

@@ -47,4 +47,10 @@ class UserController extends BaseController
         //管理员添加页面
         return view('admin/user/add');
     }
+
+    //添加管理员提交
+    public function add_admin(Request $request)
+    {
+        var_dump($request->all());
+    }
 }
