@@ -7,7 +7,14 @@ use App\Http\Controllers\Controller;
 
 class BaseController extends Controller
 {
-    //
+    /**
+     * Notes:http  get请求
+     * User: "LiJinGuo"
+     * Date: 2018/6/25
+     * Time: 17:30
+     * @param $url
+     * @return mixed
+     */
     public function getcurl($url)
     {
         $ch = curl_init();//初始化curl
@@ -19,6 +26,14 @@ class BaseController extends Controller
         return $output;
     }
 
+    /** HTTPS get 请求
+     * Notes:
+     * User: "LiJinGuo"
+     * Date: 2018/6/25
+     * Time: 17:30
+     * @param $url
+     * @return mixed
+     */
     public function getCurlHttps($url)
     {
         $req = curl_init();//初始化curl
@@ -38,8 +53,28 @@ class BaseController extends Controller
         return $data;
     }
 
+    /**
+     * Notes:ajax返回值
+     * User: "LiJinGuo"
+     * Date: 2018/6/25
+     * Time: 17:30
+     * @param array  $data
+     * @param string $type
+     */
     public function ajaxReturn($data = [],$type="json")
     {
         echo json_encode($data);exit;
+    }
+
+    public function dump(Array $arr=[],String $string='')
+    {
+        if(!empty($str)) {
+            var_dump($str);
+        }
+        if(!empty($arr)) {
+            echo '<pre>';
+            print_r($arr);
+            echo '</pre>';
+        }
     }
 }
