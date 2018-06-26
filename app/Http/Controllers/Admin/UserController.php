@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
 use App\Models\User;
+use Validator;
 
 class UserController extends BaseController
 {
@@ -51,6 +52,19 @@ class UserController extends BaseController
     //添加管理员提交
     public function add_admin(Request $request)
     {
-        var_dump($request->all());
+        $validator = Validator::make($request->all(),[
+            'user_name'     => 'require',
+            'user_account'  => 'required',
+            'user_nickname' => 'required',
+            'user_mobile'   => 'required',
+            'user_email'    => 'required',
+            'user_pwd'      => 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect('admin/adduser')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
     }
 }
