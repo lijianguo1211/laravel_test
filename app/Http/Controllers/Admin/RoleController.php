@@ -6,7 +6,7 @@ use App\Http\Requests\StoreRolePost;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
-use APP\Models\UserRole;
+use App\Models\UserRole;
 use App\Http\Controllers\Controller;
 
 class RoleController extends BaseController
@@ -98,11 +98,9 @@ class RoleController extends BaseController
                 'user_id'  => $user_id,
             ];
             $result = $role_user_model::create($data);
-            if($result) {
-                var_dump($result);exit;
+            if(!$result) {
                 $this->ajaxReturn(['status'=>'0','msg'=>'绑定角色失败']);
             }
-            var_dump($result);exit;
             $this->ajaxReturn(['status'=>1,'msg'=>'绑定角色成功']);
         }
         $role_model = new Role();

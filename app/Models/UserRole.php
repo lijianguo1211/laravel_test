@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserRole extends Model
 {
-    protected $table = 'UserRole';
+    protected $table = 'user_role';
     //主键
     //protected $primaryKey= 'id';
     //开启时间戳自动写入
