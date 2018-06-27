@@ -4,7 +4,7 @@
         <legend>添加管理员</legend>
     </fieldset>
 
-    <form class="layui-form" action="">
+    <form class="layui-form" id="forms">
         <div class="layui-form-item">
             <label class="layui-form-label">用户名</label>
             <div class="layui-input-block">
@@ -62,6 +62,7 @@
                 </select>
             </div>
         </div>
+        @csrf
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <a class="layui-btn" id="btns">立即提交</a>
@@ -77,6 +78,11 @@
             $("#btns").click(function(){
                 $.ajax({
                     url:"{{url('admin/user/add_admin')}}",
+                    type:"post",
+                    data:$("#forms").serialize(),
+                    success:function(res) {
+                        console.log(res);
+                    }
                 });
             });
         });
