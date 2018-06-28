@@ -8,7 +8,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">用户名</label>
             <div class="layui-input-block">
-                <input type="text" name="user" placeholder="请输入用户名" class="layui-input">
+                <input type="text" name="user_name" placeholder="请输入用户名" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
@@ -70,14 +70,13 @@
             </div>
         </div>
     </form>
-
 @endsection
 @section('js')
     <script>
         $(function(){
             $("#btns").click(function(){
                 $.ajax({
-                    url:"{{url('admin/user/add_admin')}}",
+                    url:"{{url('admin/add_admin')}}",
                     type:"post",
                     data:$("#forms").serialize(),
                     success:function(res) {

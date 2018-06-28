@@ -52,19 +52,38 @@ class UserController extends BaseController
     //添加管理员提交
     public function add_admin(Request $request)
     {
-        $validator = Validator::make($request->all(),[
-            'user_name'     => 'require',
+        $messages = [
+            'user_name.required' => '用户名不能为空',
+            'user_account.required' => '用户账户不能为空',
+            'user_nickname.required' => '用户昵称不能为空',
+            'user_mobile.required' => '用户手机号不能为空',
+            'user_email.required' => '用户邮箱不能为空',
+            'user_pwd.required' => '用户密码不能为空',
+        ];
+        $validator = Validator::make($request->all(), [
+            'user_name'     => 'required',
             'user_account'  => 'required',
             'user_nickname' => 'required',
             'user_mobile'   => 'required',
             'user_email'    => 'required',
             'user_pwd'      => 'required',
-        ]);
-        if ($validator->fails()) {
+        ], $messages);
+        /*$validator = $request->validate([
+            'user_name'     => 'required',
+            'user_account'  => 'required',
+            'user_nickname' => 'required',
+            'user_mobile'   => 'required',
+            'user_email'    => 'required',
+            'user_pwd'      => 'required',
+        ]);*/
+        if (!$validator->passes()) {
+            return back()->withErrors($validator);
+        }
+        /*if ($validator->fails()) {
             return redirect('admin/adduser')
                 ->withErrors($validator)
                 ->withInput();
-        }
+        }*/
 
     }
 }

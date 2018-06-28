@@ -7,6 +7,11 @@
     <link rel="stylesheet" href="{{URL::asset('/layui/css/layui.css')}}">
     <link rel="stylesheet" href="{{URL::asset('/font-awesome/4.5.0/css/font-awesome.min.css')}}">
 </head>
+<style>
+    .am-alert {
+        margin: 0;
+    }
+</style>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
 
@@ -19,6 +24,7 @@
 
     <div class="layui-body">
         <!-- 内容主体区域 -->
+        @include('admin/layout/msg')
         <div style="padding: 15px;">
             @yield('content')
         </div>
@@ -48,6 +54,12 @@
         layer.msg($msg);
     }
     @endif
+    $(function(){
+        var hideFlash = function () {
+            $(".am-alert").fadeOut("slow");
+        }
+        setTimeout(hideFlash, 4000);
+    })
 </script>
 @yield('js')
 </body>
