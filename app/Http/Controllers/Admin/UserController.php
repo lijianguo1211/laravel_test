@@ -68,22 +68,11 @@ class UserController extends BaseController
             'user_email'    => 'required',
             'user_pwd'      => 'required',
         ], $messages);
-        /*$validator = $request->validate([
-            'user_name'     => 'required',
-            'user_account'  => 'required',
-            'user_nickname' => 'required',
-            'user_mobile'   => 'required',
-            'user_email'    => 'required',
-            'user_pwd'      => 'required',
-        ]);*/
-        if (!$validator->passes()) {
-            return back()->withErrors($validator);
-        }
-        /*if ($validator->fails()) {
+        if ($validator->fails()) {
             return redirect('admin/adduser')
                 ->withErrors($validator)
                 ->withInput();
-        }*/
+        }
 
     }
 }
