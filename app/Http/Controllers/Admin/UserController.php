@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
 use App\Models\User;
+use App\Http\Requests\StoreUserPost;
 use Validator;
 
 class UserController extends BaseController
@@ -52,27 +53,15 @@ class UserController extends BaseController
     //添加管理员提交
     public function add_admin(Request $request)
     {
-        $messages = [
-            'user_name.required' => '用户名不能为空',
-            'user_account.required' => '用户账户不能为空',
-            'user_nickname.required' => '用户昵称不能为空',
-            'user_mobile.required' => '用户手机号不能为空',
-            'user_email.required' => '用户邮箱不能为空',
-            'user_pwd.required' => '用户密码不能为空',
-        ];
-        $validator = Validator::make($request->all(), [
-            'user_name'     => 'required',
-            'user_account'  => 'required',
-            'user_nickname' => 'required',
-            'user_mobile'   => 'required',
-            'user_email'    => 'required',
-            'user_pwd'      => 'required',
-        ], $messages);
-        if ($validator->fails()) {
-            return redirect('admin/adduser')
-                ->withErrors($validator)
-                ->withInput();
-        }
-
+        echo $request->get('user_name');
+        //验证数据,接收数据
+        $user_name = $request->get('user_name');
+        $user_account = $request->get('user_account');
+        $user_nickname = $request->get('user_nickname');
+        $user_mobile = $request->get('user_mobile');
+        $user_email = $request->get('user_email');
+        $user_pwd = $request->get('user_pwd');
+        $user_rpwd = $request->get('user_rpwd');
+        $user_type = $request->get('user_type');
     }
 }

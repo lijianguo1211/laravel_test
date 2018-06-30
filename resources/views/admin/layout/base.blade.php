@@ -11,6 +11,9 @@
     .am-alert {
         margin: 0;
     }
+    #valiTest {
+        margin: 0;
+    }
 </style>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">

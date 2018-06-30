@@ -1,11 +1,13 @@
 @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+    layer.msg("{{$errors->first()}}",{icon:2})
+    {{--<div class="layui-card">
+        @foreach ($errors->all() as $error)
+        <div class="layui-card-header">
+                {{ $error->first() }}
+        </div>
+        @endforeach
     </div>
+    </div>--}}
 @endif
 @if (session('success'))
     <div class="am-alert am-alert-success">
