@@ -120,6 +120,9 @@
                         }
                         if(obj.status == 0) {
                             layer.msg(obj.mag,{icon:2})
+                        } else {
+                            layer.msg(obj.mag,{icon:1})
+                            location.href = "{{ url('admin/list') }}";
                         }
 
                     }
