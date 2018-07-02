@@ -75,7 +75,7 @@
     <script>
         $(function(){
             $("#btns").click(function(){
-                /*if($("#user_name").val() == '') {
+                if($("#user_name").val() == '') {
                     layer.msg( '用户名不能为空', {icon: 2});
                 }
                 if($("#user_account").val() == '') {
@@ -101,7 +101,7 @@
                 }
                 if($("#user_pwd").val() != $("#user_rpwd").val()) {
                     layer.msg( '两次输入密码不一致', {icon: 2});
-                }*/
+                }
                 $.ajax({
                     url:"{{ url('admin/add_admin') }}",
                     type:"post",
@@ -122,7 +122,7 @@
                             layer.msg(obj.mag,{icon:2})
                         } else {
                             layer.msg(obj.mag,{icon:1})
-                            location.href = "{{ url('admin/list') }}";
+                           /* //location.href = "";*/
                         }
 
                     }

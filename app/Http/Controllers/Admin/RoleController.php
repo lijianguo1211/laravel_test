@@ -84,6 +84,14 @@ class RoleController extends BaseController
         }
     }
 
+    /**
+     * Notes:
+     * User: "LiJinGuo"
+     * Date: 2018/7/2
+     * Time: 14:11
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function role_user(Request $request)
     {
         if($request->ajax()) {

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
 use App\Models\User;
 use App\Http\Requests\StoreUserPost;
+use Illuminate\Support\Facades\Hash;
 use Validator;
 
 class UserController extends BaseController
@@ -74,7 +75,7 @@ class UserController extends BaseController
             'user_nickname'  => $user_nickname,
             'user_mobile'    => $user_mobile,
             'user_email'     => $user_email,
-            'user_pwd'       => $user_pwd,
+            'user_pwd'       => Hash::make($user_pwd),
             'user_type'      => $user_type,
             'user_logtime'   => date('Y-m-d H:i:s',time()),
             'user_ip'        => $request->getClientIp(),
