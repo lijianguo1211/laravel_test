@@ -51,9 +51,8 @@ class UserController extends BaseController
     }
 
     //添加管理员提交
-    public function add_admin(Request $request)
+    public function add_admin(StoreUserPost $request)
     {
-        echo $request->get('user_name');
         //验证数据,接收数据
         $user_name = $request->get('user_name');
         $user_account = $request->get('user_account');
@@ -63,5 +62,27 @@ class UserController extends BaseController
         $user_pwd = $request->get('user_pwd');
         $user_rpwd = $request->get('user_rpwd');
         $user_type = $request->get('user_type');
+        if($user_pwd !== $user_rpwd) {
+            $this->ajaxReturn(['status'=>0,'msg'=>'两次输入密码不一致']);
+        }
+        if(!$this->regexMobile($user_mobile)) {
+            $this->ajaxReturn(['status'=>0,'msg'=>'手机号格式不对']);
+        }
+        $data = [
+            'user_name'      => $user_name,
+            'user_account'   => $user_account,
+            'user_nickname'  => $user_nickname,
+            'user_mobile'    => $user_mobile,
+            'user_email'     => $user_email,
+            'user_pwd'       => $user_pwd,
+            'user_type'      => $user_type,
+            'user_logtime'   => date('Y-m-d H:i:s',time()),
+            'user_ip'        => $request->getClientIp(),
+        ];
+        $result = User::create($data);
+        if(!$result) {
+            $this->ajaxReturn(['status'=>0,'msg'=>'新增用户失败']);
+        }
+        $this->ajaxReturn(['status'=>1,'msg'=>'新增用户成功']);
     }
 }

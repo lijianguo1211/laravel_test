@@ -107,9 +107,20 @@
                     type:"post",
                     data:$("#forms").serialize(),
                     success:function(res) {
-                        console.log(res);
+                        //console.log(res);
                         var obj = JSON.parse(res);
                         console.log(obj);
+                        if(obj.success == false) {
+                            console.log(obj.errors);
+                            $.each(obj.errors,function(key,value){
+                                $.each(value,function(k,v){
+                                    layer.msg(v,{icon:2})
+                                })
+                            })
+                        }
+                        if(obj.status == 0) {
+                            layer.msg(obj.mag,{icon:2})
+                        }
 
                     }
                 });

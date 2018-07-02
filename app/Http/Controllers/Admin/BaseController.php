@@ -66,6 +66,14 @@ class BaseController extends Controller
         echo json_encode($data);exit;
     }
 
+    /**
+     * Notes:
+     * User: "LiJinGuo"
+     * Date: 2018/7/2
+     * Time: 10:47
+     * @param array  $arr
+     * @param String $string
+     */
     public function dump(Array $arr=[],String $string='')
     {
         if(!empty($str)) {
@@ -75,6 +83,24 @@ class BaseController extends Controller
             echo '<pre>';
             print_r($arr);
             echo '</pre>';
+        }
+    }
+
+    /**
+     * Notes:验证手机号
+     * User: "LiJinGuo"
+     * Date: 2018/7/2
+     * Time: 10:54
+     * @param $phone
+     * @return bool
+     */
+    public function regexMobile($phone)
+    {
+        $pattern = '/^1[34578]\d{9}$/';
+        if(preg_match($pattern,$phone)) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
