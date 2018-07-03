@@ -19,4 +19,22 @@ class Role extends Model
     const UPDATED_AT = 'role_updatetime';//修改时间
     //定义新增字段
     protected $fillable = ['role_name','role_status'];
+
+    /**
+     * 查询role表的数据
+     * @param string $key
+     * @return mixed
+     */
+    public function getRoleList($key='')
+    {
+        if(!empty($key)) {
+            $where['role_name']   = ['like' , '%' . $key . '%'];
+        }
+            $where['role_status'] = ['=',1];
+            $result = $this->select('role_id','role_name','role_updatetime')
+                ->where($where)
+                ->orderBy('role_addtime','DESC')
+                ->get();
+        return $result;
+    }
 }

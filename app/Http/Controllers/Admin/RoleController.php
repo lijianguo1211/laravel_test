@@ -31,9 +31,12 @@ class RoleController extends BaseController
      * Date: 2018/6/26
      * Time: 9:17
      */
-    public function index_list_ajax()
+    public function index_list_ajax(Request $request)
     {
-        return view('admin/role/index_list_ajax');
+        //查询列表内容
+        $key = $request->get('keyName');
+        $list = (new Role())->getRoleList($key);
+        return view('admin/role/index_list_ajax',compact('list'));
     }
 
     /**

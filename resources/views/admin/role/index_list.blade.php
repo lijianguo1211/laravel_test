@@ -31,15 +31,13 @@
                 <th>格言</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>贤心</td>
-                <td>汉族</td>
-                <td>1989-10-14</td>
-                <td>人生似修行</td>
-            </tr>
-            </tbody>
         </table>
     </div>
 
+@endsection
+
+@section('js')
+    $(function(){
+
+    })
 @endsection
