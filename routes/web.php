@@ -40,7 +40,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::post('bd/save','BaiduController@save');//提交语音
 
     Route::get('role_index_list','RoleController@index_list');
-    Route::post('role_index_list_ajax','RoleController@index_list_ajax');
+    Route::get('role_index_list_ajax','RoleController@index_list_ajax');
     Route::any('role_index','RoleController@role_index');//角色列表
     Route::post('role_index_ajax','RoleController@role_index_ajax');
     Route::any('role_user','RoleController@role_user');

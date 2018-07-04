@@ -27,14 +27,14 @@ class Role extends Model
      */
     public function getRoleList($key='')
     {
+        $where = [];
         if(!empty($key)) {
             $where['role_name']   = ['like' , '%' . $key . '%'];
         }
-            $where['role_status'] = ['=',1];
-            $result = $this->select('role_id','role_name','role_updatetime')
-                ->where($where)
+            $result = $this->select('role_id','role_name','role_updatetime','role_status')
+                ->where('role_status','=',1)->where($where)
                 ->orderBy('role_addtime','DESC')
-                ->get();
+                ->get()->toArray();
         return $result;
     }
 }

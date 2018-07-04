@@ -35,8 +35,8 @@ class RoleController extends BaseController
     {
         //查询列表内容
         $key = $request->get('keyName');
-        $list = (new Role())->getRoleList($key);
-        return view('admin/role/index_list_ajax',compact('list'));
+        $lists = (new Role())->getRoleList($key);
+        return view('admin/role/index_list_ajax',compact('lists'));
     }
 
     /**

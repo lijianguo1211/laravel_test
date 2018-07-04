@@ -15,29 +15,66 @@
         </a>
     </div>
 
+    <div class="layui-col-md4 layui-col-md-offset8">
+        <form id="forms">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label">输入角色名</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="keyName"  placeholder="角色名...." class="layui-input">
+                    </div>
+                </div>
+
+                <div class="layui-inline">
+                    <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="search()" >搜索点我</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
     <div class="layui-form">
         <table class="layui-table">
             <colgroup>
                 <col width="150">
                 <col width="150">
                 <col width="200">
-                <col>
+                <col width="200">
             </colgroup>
             <thead>
             <tr>
                 <th>ID</th>
                 <th>角色名称</th>
-                <th>关联用户</th>
-                <th>格言</th>
+                <th>权限状态</th>
+                <th>添加时间</th>
             </tr>
             </thead>
+        </table>
+        <table id="ajax_return" class="layui-table">
         </table>
     </div>
 
 @endsection
 
 @section('js')
-    $(function(){
+    <script>
+        //加载页面就运行
+        $(function(){
+            get_table_ajax('forms');
+        });
+        function search(){
+            get_table_ajax('forms');
+        };
 
-    })
+        function get_table_ajax(forms) {
+            $.ajax({
+                url:"{{ url('admin/role_index_list_ajax') }}",
+                type:"get",
+                data:$("#"+forms).serialize(),
+                success:function(res) {
+                    $("#ajax_return").html('');
+                    $("#ajax_return").append(res);
+                }
+            });
+        };
+    </script>
 @endsection
