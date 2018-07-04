@@ -9,7 +9,7 @@
                 <dl class="layui-nav-child">
                     <dd><a href="{{url('admin/list')}}">管理员列表</a></dd>
                     <dd><a href="{{url('admin/role_index_list')}}">角色列表</a></dd>
-                    <dd><a href="javascript:;">权限列表</a></dd>
+                    <dd><a href="{{ url('admin/accessList') }}">菜单列表</a></dd>
                     <dd><a href="javascript:;">操作日志</a></dd>
                 </dl>
             </li>

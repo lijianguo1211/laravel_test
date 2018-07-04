@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\StoreRolePost;
+use App\Models\Access;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\UserRole;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Validator;
 
 class RoleController extends BaseController
 {
@@ -88,7 +90,7 @@ class RoleController extends BaseController
     }
 
     /**
-     * Notes:
+     * Notes:角色 | 管理用户关联
      * User: "LiJinGuo"
      * Date: 2018/7/2
      * Time: 14:11
@@ -122,5 +124,74 @@ class RoleController extends BaseController
             return back()->with(['status'=>0,'msg'=>'数据不存在']);
         }
         return view('admin/role/role_user',compact('roles','users'));
+    }
+
+    /**
+     * Notes:显示|处理 添加菜单
+     * User: "LiJinGuo"
+     * Date: 2018/7/4
+     * Time: 19:55
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function access_index(Request $request)
+    {
+        //判断是否是ajax请求
+        if ($request->ajax()) {
+            //验证数据
+            $validator = Validator::make($request->all(), [
+                'access_pid'    => 'required',
+                'access_title'  => 'required|unique:access|max:30',
+                'access_url'    => 'required|unique:access|max:30',
+                'access_status' => 'required',
+            ],
+                [
+                    'access_pid.required'    => '顶级总管不能为空',
+                    'access_title.required'  => '菜单不能为空',
+                    'access_title.unique'    => '菜单已存在',
+                    'access_title.max'       => '菜单最多30个字符',
+                    'access_url.unique'      => '路由已存在',
+                    'access_url.required'    => '路由不能为空',
+                    'access_url.max'         => '路由最多30个字符',
+                    'access_status.required' => '权限状态不能为空',
+                ]);
+            $errors = count($validator->getMessageBag()->toArray());
+            if($errors > 0) {
+                $this->ajaxReturn(['status'=>false,'errors'=>$validator->getMessageBag()->toArray()]);
+            }
+            //插入数据
+            $result = Access::create($request->all());
+            if ($result->count() == false) {
+                $this->ajaxReturn(['status'=>0,'msg'=>'添加数据失败']);
+            }
+            $this->ajaxReturn(['status'=>1,'msg'=>'添加数据成功']);
+        }
+        $select = ['access_id','access_pid','access_title'];
+        $where  = ['access_status'=>1];
+        $access = (new Access())->getAccessList($select,$where);
+        if ($access->count() == false) {
+            $access = '';
+        }
+        return view('admin/role/access_index',compact('access'));
+    }
+
+    public function accessList(Request $request)
+    {
+        return view('admin/role/accessList');
+    }
+
+    public function accessListAjax(Request $request)
+    {
+
+            $key = $request->get('keyTitle');
+            $select = ['access_id','access_status','access_title','access_updatetime','access_url'];
+            $where['access_status']  = [1];
+            //$where['access_title']   = ['like','%' . $key . '%'];
+            $access = (new Access())->getAccessList($select,$where);var_dump($access);
+            if ($access->count() == false) {
+                $access = '';
+            }
+            return view('admin/role/accessListAjax',compact('access'));
+
     }
 }

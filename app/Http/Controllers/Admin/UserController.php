@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\BaseController;
 use App\Models\User;
 use App\Http\Requests\StoreUserPost;
 use Illuminate\Support\Facades\Hash;
-use Validator;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends BaseController
 {

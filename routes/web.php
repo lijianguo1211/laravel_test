@@ -45,6 +45,12 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::post('role_index_ajax','RoleController@role_index_ajax');
     Route::any('role_user','RoleController@role_user');
 
+    Route::get('access_index','RoleController@access_index');
+    Route::post('access_index_ajax','RoleController@access_index');
+    Route::get('accessList','RoleController@accessList');
+    Route::get('accessListAjax','RoleController@accessListAjax');
+
+
 });
 
 Route::get('hello',function(){
