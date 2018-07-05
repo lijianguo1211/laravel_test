@@ -20,7 +20,7 @@
     </div>
 
     <div class="layui-col-md4 layui-col-md-offset8">
-        <form id="forms">
+        <form id="forms" onSubmit="return false">
             <div class="layui-form-item">
                 <div class="layui-inline">
                     <label class="layui-form-label">输入菜单名</label>
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="layui-inline">
-                    <button class="layui-btn layui-btn-radius layui-btn-normal" onclick="search()" >搜索点我</button>
+                    <input type="button" value="搜索点我" class="layui-btn layui-btn-radius layui-btn-normal" onclick="search()" />
                 </div>
             </div>
         </form>

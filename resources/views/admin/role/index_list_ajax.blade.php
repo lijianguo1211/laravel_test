@@ -5,9 +5,13 @@
     <col width="200">
 </colgroup>
 <tbody>
-    @if(count($lists) < 0)
+    @if(count($lists) <= 0)
         <tr>
-            <td></td>
+            <td align="center" axis="col0" colspan="50">
+                <div class="layui-progress layui-progress-big" lay-showPercent="true">
+                    <div class="layui-progress-bar layui-bg-blue" lay-percent="80%"></div>
+                </div>
+            </td>
         </tr>
     @else
         @foreach($lists as $list)

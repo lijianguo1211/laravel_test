@@ -170,7 +170,7 @@ class RoleController extends BaseController
         $where  = ['access_status'=>1];
         $access = (new Access())->getAccessList($select,$where);
         if ($access->count() == false) {
-            $access = '';
+            $access = [];
         }
         return view('admin/role/access_index',compact('access'));
     }
@@ -183,15 +183,14 @@ class RoleController extends BaseController
     public function accessListAjax(Request $request)
     {
 
-            $key = $request->get('keyTitle');
-            $select = ['access_id','access_status','access_title','access_updatetime','access_url'];
-            $where['access_status']  = [1];
-            //$where['access_title']   = ['like','%' . $key . '%'];
-            $access = (new Access())->getAccessList($select,$where);var_dump($access);
-            if ($access->count() == false) {
-                $access = '';
-            }
-            return view('admin/role/accessListAjax',compact('access'));
+       $key = $request->get('keyTitle');
+       $select = ['access_id','access_status','access_title','access_updatetime','access_url'];
+       $where = $key;
+       $access = (new Access())->getAccessList($select,$where);var_dump($access);
+       if ($access->count() == false) {
+                $access = [];
+       }
+       return view('admin/role/accessListAjax',compact('access'));
 
     }
 }

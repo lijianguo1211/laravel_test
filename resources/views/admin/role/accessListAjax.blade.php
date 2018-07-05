@@ -6,9 +6,12 @@
     <col width="200">
 </colgroup>
 <tbody>
-@if(count($access) < 0)
+@if(count($access) <= 0)
     <tr>
-        <td>没有数据</td>
+        <td>
+            <i class="layui-icon layui-icon-face-smile" style="font-size: 30px; color: #1E9FFF;"></i>
+            没有符合要求的数据
+        </td>
     </tr>
 @else
     @foreach($access as $list)

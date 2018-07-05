@@ -29,9 +29,9 @@ class Access extends Model
     public function getAccessList($select='*',$where='',$order="")
     {
         if (empty($order)) {
-
+            $order = 'DESC';
         }
-        $result = $this->select($select)->where($where)->orderBy('access_addtime','DESC')->get();
+        $result = $this->select($select)->where('access_status',1)->where('access_title','like','%'.$where.'%')->orderBy('access_addtime',$order)->get();
         return $result;
     }
 }
