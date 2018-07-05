@@ -15,6 +15,8 @@ class CheckToken
      */
     public function handle($request, Closure $next)
     {
+        //验证是否已经登录
+
         return $next($request);
     }
 }

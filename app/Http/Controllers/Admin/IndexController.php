@@ -14,6 +14,10 @@ class IndexController extends BaseController
 {
     public function index(Request $request)
     {
+        $controller = get_class($request->route()->getController());
+        $controllerArr = explode('\\',$controller);
+        $controllerName = array_pop($controllerArr);
+        var_dump($controllerName);
         return view('admin/index/index');//需要定义路由,在浏览器输入admin/index 访问
     }
 
