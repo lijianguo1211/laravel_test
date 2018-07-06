@@ -41,11 +41,21 @@ return [
 
         'mysql' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
+
+            'read' => [
+                'host' => env('DB_HOST_R', '127.0.0.1'),//从读
+                'username' => env('DB_USERNAME_R', 'forge'),
+                'password' => env('DB_PASSWORD_R', ''),
+            ],
+            'write' => [
+                'host' => env('DB_HOST_W', '127.0.0.1'),//主写
+                'username_W' => env('DB_USERNAME', 'forge'),
+                'password_W' => env('DB_PASSWORD', ''),
+            ],
+
+
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
             'unix_socket' => env('DB_SOCKET', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
