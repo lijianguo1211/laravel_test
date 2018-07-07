@@ -42,7 +42,7 @@ return [
         'mysql' => [
             'driver' => 'mysql',
 
-            'read' => [
+            /*'read' => [
                 'host' => env('DB_HOST_R', '127.0.0.1'),//从读
                 'username' => env('DB_USERNAME_R', 'forge'),
                 'password' => env('DB_PASSWORD_R', ''),
@@ -51,9 +51,11 @@ return [
                 'host' => env('DB_HOST_W', '127.0.0.1'),//主写
                 'username_W' => env('DB_USERNAME', 'forge'),
                 'password_W' => env('DB_PASSWORD', ''),
-            ],
+            ],*/
 
-
+            'host' => env('DB_HOST_W', '127.0.0.1'),//主写
+            'username' => env('DB_USERNAME_W', 'forge'),
+            'password' => env('DB_PASSWORD_W', ''),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'forge'),
             'unix_socket' => env('DB_SOCKET', ''),

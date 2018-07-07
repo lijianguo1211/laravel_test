@@ -21,6 +21,10 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('list','UserController@list');//管理员列表
     Route::get('adduser','UserController@add');//添加管理员显示
     Route::post('add_admin','UserController@add_admin');//提交管理员
+    Route::get('cardIndex','CardIdController@index');//实名认证显示
+
+    //文件上传接口调用处理
+    Route::post('uploadFile','UploadController@uploadFile');
 
     Route::resource('article', 'ArticleController');//文章管理
     Route::resource('type','TypeController');//添加文章分类

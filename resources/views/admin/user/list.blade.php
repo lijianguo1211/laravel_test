@@ -9,6 +9,10 @@
             <i class="menu-icon fa fa-plus orange"></i>
             <span class="menu-text orange"> 添加管理员 </span>
         </a>
+        <a href="{{url('admin/cardIndex')}}">
+            <i class="menu-icon fa fa-plus orange"></i>
+            <span class="menu-text orange"> 实名认证 </span>
+        </a>
         <a href="{{url('admin/email')}}">
             <i class="menu-icon fa fa-plus orange"></i>
             <span class="menu-text orange"> 发送邮件 </span>
