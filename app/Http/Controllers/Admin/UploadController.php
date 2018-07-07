@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
-//use League\Flysystem\Config;
 use Illuminate\Support\Facades\Config;
 
 class UploadController extends BaseController
@@ -49,7 +48,8 @@ class UploadController extends BaseController
             //把路径传回前端
             $config = Config::get('filesystems');
             $test = $config['disks']['my']['url'];
-            $paths[] = $test . '/' . $path;
+            array_push($paths,$test . '/' . $path);
+            //$paths[] = $test . '/' . $path;
         }
         $this->ajaxReturn(['status'=>1,'msg'=>'图片上传成功','path'=>$paths]);
     }

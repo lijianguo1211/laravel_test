@@ -23,7 +23,7 @@ class NewController extends BaseController
         }
         $apikey = 'BZIaJZmLL506tj6UE2XSiBTwIBtinQrTODCmsLqB2BuXmqbMb8g4eGngwcHQP79I';
         $url = "http://api01.bitspaceman.com:8000/news/qihoo?apikey=".$apikey.'&kw='.$kw;
-        //$jsonArr = $this->getcurl($url);
+        $jsonArr = $this->getcurl($url);
         //var_dump($jsonArr);//先判断是否查询成功
         $arr = json_decode($jsonArr,true);
         if($arr['retcode'] != '000000') {

@@ -22,6 +22,7 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('adduser','UserController@add');//添加管理员显示
     Route::post('add_admin','UserController@add_admin');//提交管理员
     Route::get('cardIndex','CardIdController@index');//实名认证显示
+    Route::post('getIndex','CardIdController@getIndex');//实名认证(数据)处理
 
     //文件上传接口调用处理
     Route::post('uploadFile','UploadController@uploadFile');

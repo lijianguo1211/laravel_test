@@ -119,9 +119,9 @@
                             })
                         }
                         if(obj.status == 0) {
-                            layer.msg(obj.mag,{icon:2})
+                            layer.msg(obj.msg,{icon:2})
                         } else {
-                            layer.msg(obj.mag,{icon:1})
+                            layer.msg(obj.msg,{icon:1})
                            /* //location.href = "";*/
                         }
 

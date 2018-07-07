@@ -21,6 +21,7 @@
             <label class="layui-form-label">身份证正面</label>
             <div class="layui-input-block">
                 <div class="layui-upload-drag" id="front_card">
+                        <input type="hidden" name="front_card" id="front_path">
                     <i class="layui-icon"></i>
                     <p>身份证正面</p>
                 </div>
@@ -79,8 +80,18 @@
                         //delete files[index]; //删除列表中对应的文件，一般在某个事件中使用
                     });
                 }
-                ,done: function(res){
-                    console.log(res)
+                ,done: function(res, index, upload){
+                    //console.log(res);
+                   // console.log(res.path['0']);
+                    var a = res.path['0'];
+                    if (res.status == 1) {
+                        $("#front_path").attr('value',a);
+                        document.getElementById('front_path').setAttribute('value',a);
+                        console.log(document.getElementById('front_path').getAttribute('value'));
+                        //layer.msg(obj.msg,{icon:1})
+                    } else {
+                        //layer.msg(obj.msg,{icon:2})
+                    }
                     //上传完毕回调
                 }
                 ,error: function(res1){
@@ -110,24 +121,24 @@
                 if($("#card").val() == '') {
                     layer.msg( '身份证号不能为空', {icon: 2});
                 }
-                if($("#front_card").val() == '') {
+                /*if($("#front_card").val() == '') {
                     layer.msg( '身份证正面照不能为空', {icon: 2});
                 }
                 if($("#bank_card").val() == '') {
                     layer.msg( '身份证背面照不能为空', {icon: 2});
-                }
+                }*/
                $.ajax({
-                    url:"{{ url('admin/add_admin') }}",
+                    url:"{{ url('admin/getIndex') }}",
                     type:"post",
                     data:$("#forms").serialize(),
                     success:function(res) {
-                        //console.log(res);
-                       /*if(obj.status == 0) {
-                            layer.msg(obj.mag,{icon:2})
+                        console.log(res);
+                       if(obj.status == 0) {
+                            layer.msg(obj.msg,{icon:2})
                         } else {
-                            layer.msg(obj.mag,{icon:1})
-                            location.href = "";
-                        }*/
+                            layer.msg(obj.msg,{icon:1})
+                            //location.href = "";
+                        }
 
                     }
                 });
