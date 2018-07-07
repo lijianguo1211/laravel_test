@@ -1576,6 +1576,66 @@
         ]
     },
     {
+        "name": "ofcold/identity-card",
+        "version": "2.0.9",
+        "version_normalized": "2.0.9.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/ofcold/identity-card.git",
+            "reference": "b4e7c44ab894bf8f8ab9dc972b3addf7ebee957a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://files.phpcomposer.com/files/ofcold/identity-card/b4e7c44ab894bf8f8ab9dc972b3addf7ebee957a.zip",
+            "reference": "b4e7c44ab894bf8f8ab9dc972b3addf7ebee957a",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=7.1"
+        },
+        "require-dev": {
+            "mockery/mockery": "^1.0",
+            "phpunit/phpunit": "^7.1"
+        },
+        "time": "2018-06-26T09:49:02+00:00",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Ofcold\\IdentityCard\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ofcold Team",
+                "email": "support@ofcold.com",
+                "homepage": "https://ofcold.com"
+            },
+            {
+                "name": "Bill Li",
+                "email": "bill@ofcold.com",
+                "homepage": "https://artisanbill.com"
+            },
+            {
+                "name": "Olivia Fu",
+                "email": "olivia@ofcold.com",
+                "homepage": "https://olivia.ink"
+            }
+        ],
+        "description": "A simple proof of identity card of the people's Republic of China.",
+        "homepage": "https://ofcold.com",
+        "keywords": [
+            "ID Card",
+            "area",
+            "php71",
+            "region"
+        ]
+    },
+    {
         "name": "paragonie/random_compat",
         "version": "v2.0.12",
         "version_normalized": "2.0.12.0",
