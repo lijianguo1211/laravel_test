@@ -24,7 +24,6 @@ class UploadController extends BaseController
         //得到数组
         $files = $request->file();
         //遍历添加路径
-        $paths = [];
         foreach ($files as $file) {
             //文件是否出错
             $res=$file->getError();
@@ -48,8 +47,7 @@ class UploadController extends BaseController
             //把路径传回前端
             $config = Config::get('filesystems');
             $test = $config['disks']['my']['url'];
-            array_push($paths,$test . '/' . $path);
-            //$paths[] = $test . '/' . $path;
+            $paths = $test . '/' . $path;
         }
         $this->ajaxReturn(['status'=>1,'msg'=>'图片上传成功','path'=>$paths]);
     }

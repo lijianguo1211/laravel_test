@@ -5,6 +5,8 @@
     </fieldset>
 
     <form class="layui-form" id="forms">
+        <div id="front_path"></div>
+        <div id="bank_path"></div>
         <div class="layui-form-item">
             <label class="layui-form-label">真实姓名</label>
             <div class="layui-input-block">
@@ -21,7 +23,7 @@
             <label class="layui-form-label">身份证正面</label>
             <div class="layui-input-block">
                 <div class="layui-upload-drag" id="front_card">
-                        <input type="hidden" name="front_card" id="front_path">
+                       {{-- <input type="hidden" name="front_card">--}}
                     <i class="layui-icon"></i>
                     <p>身份证正面</p>
                 </div>
@@ -39,6 +41,10 @@
                         <i class="layui-icon"></i>
                         <p>身份证背面</p>
                     </div>
+                    <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
+                        预览图：
+                        <div class="layui-upload-list" id="demo2"></div>
+                    </blockquote>
                     {{--<input type="tel" id="bank_card" name="bank_card" autocomplete="off" class="layui-input">--}}
                 </div>
         </div>
@@ -56,16 +62,19 @@
     <script>
         var token = $('input[name=_token]').val();
         layui.use('upload', function() {
-            var $ = layui.jquery
-                , upload = layui.upload;
-
+            var upload = layui.upload,$ = layui.jquery;
+//
             //拖拽上传
             upload.render({
                 elem: '#front_card'
                 ,url: "{{ url('admin/uploadFile') }}"
                 ,data: {'_token':token,'add_type':'1'}
-                ,auto: false //选择文件后不自动上传
-                ,bindAction: '#btns' //指向一个按钮触发上传
+                //,auto: false //选择文件后不自动上传
+                //,bindAction: '#btns' //指向一个按钮触发上传
+                ,accept: 'images' //允许上传的文件类型
+                ,size: 100 //最大允许上传的文件大小
+                ,multiple:true//是否允许多文件上传,true-允许,false-不允许
+                ,number:3//允许上传文件的张数
                 ,choose: function(obj){
                     //将每次选择的文件追加到文件队列
                     var files = obj.pushFile();
@@ -83,32 +92,51 @@
                 ,done: function(res, index, upload){
                     //console.log(res);
                    // console.log(res.path['0']);
-                    var a = res.path['0'];
                     if (res.status == 1) {
-                        $("#front_path").attr('value',a);
+                        console.log(res.path);
+                        var str = '<input type="hidden" name="front_card" value="'+res.path+'">';
+                        $("#front_path").append(str);
+                        /* $("#front_path").attr('value',a);
                         document.getElementById('front_path').setAttribute('value',a);
-                        console.log(document.getElementById('front_path').getAttribute('value'));
+                        console.log(document.getElementById('front_path').getAttribute('value'));*/
                         //layer.msg(obj.msg,{icon:1})
+                        //layer.closeAll('loading'); //关闭loading
                     } else {
                         //layer.msg(obj.msg,{icon:2})
                     }
                     //上传完毕回调
                 }
-                ,error: function(res1){
-                    //console.log(res1)
-                    //请求异常回调
-                }
-                ,accept: 'images' //允许上传的文件类型
-                ,size: 100 //最大允许上传的文件大小
-                ,multiple:true//是否允许多文件上传,true-允许,false-不允许
-                ,number:3//允许上传文件的张数
             });
             //拖拽上传
             upload.render({
                 elem: '#bank_card'
-                ,url: '/upload/'
+                ,url: "{{ url('admin/uploadFile') }}"
+                ,data: {'_token':token,'add_type':'1'}
+                //,auto: false //选择文件后不自动上传
+                //,bindAction: '#btns' //指向一个按钮触发上传
+                ,accept: 'images' //允许上传的文件类型
+                ,size: 100 //最大允许上传的文件大小
+                ,multiple:true//是否允许多文件上传,true-允许,false-不允许
+                ,number:3//允许上传文件的张数
+                ,choose: function(obj){
+                    var files = obj.pushFile();
+                    //预读本地文件，如果是多文件，则会遍历。(不支持ie8/9)
+                    obj.preview(function(index, file, result){
+                        $('#demo2').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img" style="padding-right:20px;width: 10%;">')
+
+                    });
+                }
                 ,done: function(res){
                     //console.log(res)
+                    if (res.status == 1) {
+                        console.log(res.path);
+                        var str = '<input type="hidden" name="bank_card" value="'+res.path+'">';
+                        $("#bank_path").append(str);
+                        layer.msg(res.msg,{icon:1})
+                    } else {
+                        layer.msg(res.msg,{icon:2})
+                    }
+                    //layer.closeAll('loading'); //关闭loading
                 }
             });
         });
@@ -133,10 +161,10 @@
                     data:$("#forms").serialize(),
                     success:function(res) {
                         console.log(res);
-                       if(obj.status == 0) {
-                            layer.msg(obj.msg,{icon:2})
+                       if(res.status == 0) {
+                            layer.msg(res.msg,{icon:2})
                         } else {
-                            layer.msg(obj.msg,{icon:1})
+                            layer.msg(res.msg,{icon:1})
                             //location.href = "";
                         }
 

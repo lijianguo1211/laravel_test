@@ -28,7 +28,7 @@ class CardIdController extends BaseController
 
     public function getIndex(Request $request)
     {
-        var_dump($request->all());exit;
+        //var_dump($request->all());exit;
         $name    = trim($request->get('name'));
         $card    = trim($request->get('card'));
         $user_id = $request->get('user_id');
@@ -38,7 +38,11 @@ class CardIdController extends BaseController
         if(mb_strlen($name) > 30 || strlen($card) != 18) {
             $this->ajaxReturn(['status'=>0,'msg'=>'参数位数不对']);
         }
+        //判断身份证是否合法
         $card1 = IdentityCard::make($card);
+        if ($card1 == false) {
+            $this->ajaxReturn(['status'=>0,'msg'=>'请输入合法身份证']);
+        }
         $card_arr = json_decode($card1,true);
         if (empty($card_arr['county'])) {
             $card_arr['county'] = '';
@@ -53,8 +57,8 @@ class CardIdController extends BaseController
             'name'    =>  $name,
             'card'    =>  $card,
             'user_id' =>  1,
-            'front_card'=> '',
-            'bank_card' => '',
+            'front_card'=> $request->get('front_card'),
+            'bank_card' => $request->get('bank_card'),
             'province' => $card_arr['province'],
             'city' => $card_arr['city'],
             'county' => $card_arr['county'],
