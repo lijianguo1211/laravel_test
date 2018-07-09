@@ -58,9 +58,10 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/public/upload'),
             'url' => env('APP_URL').'/storage/app/public/upload',
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'visibility' => 'public',
+           /* 'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
+            'bucket' => env('AWS_BUCKET'),*/
         ],
 
 /*        'public' => [
@@ -95,9 +96,9 @@ return [
         ],
         'ftp' => [
             'driver'   => 'ftp',
-            'host'     => 'ftp.example.com',
-            'username' => 'your-username',
-            'password' => 'your-password',
+            'host'     => '118.25.19.106',
+            'username' => 'root',
+            'password' => '1211060911gyz',
 
             // Optional FTP Settings...
             // 'port'     => 21,

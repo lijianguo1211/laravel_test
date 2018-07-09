@@ -21,14 +21,14 @@ class CardIdController extends BaseController
      * Time: 10:51
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index($user_id)
     {
-        return view('admin/card/index');
+        return view('admin/card/index',compact('user_id'));
     }
 
     public function getIndex(Request $request)
     {
-        //var_dump($request->all());exit;
+        //var_dump($request->all());
         $name    = trim($request->get('name'));
         $card    = trim($request->get('card'));
         $user_id = $request->get('user_id');
@@ -56,7 +56,7 @@ class CardIdController extends BaseController
         $data = [
             'name'    =>  $name,
             'card'    =>  $card,
-            'user_id' =>  1,
+            'user_id' =>  $user_id,
             'front_card'=> $request->get('front_card'),
             'bank_card' => $request->get('bank_card'),
             'province' => $card_arr['province'],
@@ -72,6 +72,6 @@ class CardIdController extends BaseController
         if ($result == false) {
             $this->ajaxReturn(['status'=>0,'msg'=>'添加实名认证失败']);
         }
-        $this->ajaxReturn(['status'=>0,'msg'=>'添加实名认证成功']);
+        $this->ajaxReturn(['status'=>1,'msg'=>'添加实名认证成功']);
     }
 }

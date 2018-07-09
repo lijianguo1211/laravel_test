@@ -7,6 +7,7 @@
     <form class="layui-form" id="forms">
         <div id="front_path"></div>
         <div id="bank_path"></div>
+        <input type="hidden" name="user_id" value="{{ $user_id }}">
         <div class="layui-form-item">
             <label class="layui-form-label">真实姓名</label>
             <div class="layui-input-block">
@@ -53,6 +54,8 @@
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <a class="layui-btn" id="btns">立即注册</a>
+                <a class="layui-btn" id="up">测试</a>
+                <a class="layui-btn" id="up1">测试</a>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
@@ -69,8 +72,8 @@
                 elem: '#front_card'
                 ,url: "{{ url('admin/uploadFile') }}"
                 ,data: {'_token':token,'add_type':'1'}
-                //,auto: false //选择文件后不自动上传
-                //,bindAction: '#btns' //指向一个按钮触发上传
+                ,auto: false //选择文件后不自动上传
+                ,bindAction: '#up' //指向一个按钮触发上传
                 ,accept: 'images' //允许上传的文件类型
                 ,size: 100 //最大允许上传的文件大小
                 ,multiple:true//是否允许多文件上传,true-允许,false-不允许
@@ -80,65 +83,55 @@
                     var files = obj.pushFile();
                     //预读本地文件，如果是多文件，则会遍历。(不支持ie8/9)
                     obj.preview(function(index, file, result){
-                        //console.log(index); //得到文件索引//console.log(file); //得到文件对象
-                        //console.log(result); //得到文件base64编码，比如图片
-                        //这里还可以做一些 append 文件列表 DOM 的操作
+//console.log(index); //得到文件索引//console.log(file); //得到文件对象//console.log(result); //得到文件base64编码，比如图片//这里还可以做一些 append 文件列表 DOM 的操作
                         $('#demo1').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img" style="padding-right:20px;width: 10%;">')
-
-                        //obj.upload(index, file); //对上传失败的单个文件重新上传，一般在某个事件中使用
-                        //delete files[index]; //删除列表中对应的文件，一般在某个事件中使用
                     });
                 }
                 ,done: function(res, index, upload){
-                    //console.log(res);
-                   // console.log(res.path['0']);
                     if (res.status == 1) {
                         console.log(res.path);
                         var str = '<input type="hidden" name="front_card" value="'+res.path+'">';
                         $("#front_path").append(str);
-                        /* $("#front_path").attr('value',a);
-                        document.getElementById('front_path').setAttribute('value',a);
-                        console.log(document.getElementById('front_path').getAttribute('value'));*/
-                        //layer.msg(obj.msg,{icon:1})
-                        //layer.closeAll('loading'); //关闭loading
-                    } else {
-                        //layer.msg(obj.msg,{icon:2})
-                    }
-                    //上传完毕回调
-                }
-            });
-            //拖拽上传
-            upload.render({
-                elem: '#bank_card'
-                ,url: "{{ url('admin/uploadFile') }}"
-                ,data: {'_token':token,'add_type':'1'}
-                //,auto: false //选择文件后不自动上传
-                //,bindAction: '#btns' //指向一个按钮触发上传
-                ,accept: 'images' //允许上传的文件类型
-                ,size: 100 //最大允许上传的文件大小
-                ,multiple:true//是否允许多文件上传,true-允许,false-不允许
-                ,number:3//允许上传文件的张数
-                ,choose: function(obj){
-                    var files = obj.pushFile();
-                    //预读本地文件，如果是多文件，则会遍历。(不支持ie8/9)
-                    obj.preview(function(index, file, result){
-                        $('#demo2').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img" style="padding-right:20px;width: 10%;">')
-
-                    });
-                }
-                ,done: function(res){
-                    //console.log(res)
-                    if (res.status == 1) {
-                        console.log(res.path);
-                        var str = '<input type="hidden" name="bank_card" value="'+res.path+'">';
-                        $("#bank_path").append(str);
-                        layer.msg(res.msg,{icon:1})
+                        layer.msg(res.msg,{icon:1});
+                        ajax_upload();
                     } else {
                         layer.msg(res.msg,{icon:2})
                     }
-                    //layer.closeAll('loading'); //关闭loading
                 }
             });
+            //拖拽上传
+            function ajax_upload() {
+                upload.render({
+                    elem: '#bank_card'
+                    ,url: "{{ url('admin/uploadFile') }}"
+                    ,data: {'_token':token,'add_type':'1'}
+                    ,auto: false //选择文件后不自动上传
+                    ,bindAction: '#up1' //指向一个按钮触发上传
+                    ,accept: 'images' //允许上传的文件类型
+                    ,size: 100 //最大允许上传的文件大小
+                    ,multiple:true//是否允许多文件上传,true-允许,false-不允许
+                    ,number:3//允许上传文件的张数
+                    ,choose: function(obj){
+                        var files = obj.pushFile();
+                        //预读本地文件，如果是多文件，则会遍历。(不支持ie8/9)
+                        obj.preview(function(index, file, result){
+                            console.log(file);
+                            $('#demo2').append('<img src="'+ result +'" alt="'+ file.name +'" class="layui-upload-img" style="padding-right:20px;width: 10%;">')
+
+                        });
+                    }
+                    ,done: function(res){
+                        if (res.status == 1) {
+                            console.log(res.path);
+                            var str = '<input type="hidden" name="bank_card" value="'+res.path+'">';
+                            $("#bank_path").append(str);
+                            layer.msg(res.msg,{icon:1})
+                        } else {
+                            layer.msg(res.msg,{icon:2})
+                        }
+                    }
+                });
+            }
         });
 
         $(function(){
@@ -149,28 +142,31 @@
                 if($("#card").val() == '') {
                     layer.msg( '身份证号不能为空', {icon: 2});
                 }
-                /*if($("#front_card").val() == '') {
+                if($("inpu[name=front_card]").val() == '') {
                     layer.msg( '身份证正面照不能为空', {icon: 2});
                 }
-                if($("#bank_card").val() == '') {
+                if($("input[name=bank_card]").val() == '') {
                     layer.msg( '身份证背面照不能为空', {icon: 2});
-                }*/
-               $.ajax({
-                    url:"{{ url('admin/getIndex') }}",
-                    type:"post",
-                    data:$("#forms").serialize(),
-                    success:function(res) {
-                        console.log(res);
-                       if(res.status == 0) {
-                            layer.msg(res.msg,{icon:2})
-                        } else {
-                            layer.msg(res.msg,{icon:1})
-                            //location.href = "";
-                        }
+                }
+                    ajax_store();
 
-                    }
-                });
             });
         });
+
+        function ajax_store() {
+            $.ajax({
+                url:"{{ url('admin/getIndex') }}",
+                type:"post",
+                data:$("#forms").serialize(),
+                success:function(res) {
+                    var obj = JSON.parse(res);
+                    if(obj.status == 0) {
+                        layer.msg(obj.msg,{icon:2})
+                    } else {
+                        layer.msg(obj.msg,{icon:1})
+                    }
+                }
+            });
+        }
     </script>
 @endsection

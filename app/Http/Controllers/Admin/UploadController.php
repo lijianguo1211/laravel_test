@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Config;
+use Anchu\Ftp\Ftp;
 
 class UploadController extends BaseController
 {
@@ -71,4 +72,13 @@ class UploadController extends BaseController
         }
         return $prefix_name;
     }
+
+    public function fileUploadFtp()
+    {
+        echo 123;
+        $ftp = new Ftp();
+        $config = Config::get('ftp');
+        var_dump($ftp->makeDir('123'));
+    }
+
 }
