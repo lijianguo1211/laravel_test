@@ -75,9 +75,11 @@ class UploadController extends BaseController
 
     public function fileUploadFtp()
     {
-        echo 123;
-        $ftp = new Ftp();
+
         $config = Config::get('ftp');
+        var_dump($config['connections']['connection1']);exit;
+        //var_dump(new Ftp($config));exit;
+        $ftp = new Ftp($config['connections']['connection1']);
         var_dump($ftp->makeDir('123'));
     }
 

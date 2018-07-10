@@ -1,4 +1,5 @@
-<?php namespace Anchu\Ftp;
+<?php
+namespace Anchu\Ftp;
 
 class Ftp {
 

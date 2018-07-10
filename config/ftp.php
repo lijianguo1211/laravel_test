@@ -27,9 +27,10 @@ return array(
         'connection1' => array(
             'host'   => '118.25.19.106',
             'port'  => 21,
-            'username' => 'root',
+            'username' => 'adminUser',
             'password'   => '1211060911gyz',
             'passive'   => false,
+            'timeout'  => 30,
         ),
     ),
 );

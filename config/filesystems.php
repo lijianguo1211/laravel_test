@@ -97,7 +97,7 @@ return [
         'ftp' => [
             'driver'   => 'ftp',
             'host'     => '118.25.19.106',
-            'username' => 'root',
+            'username' => 'adminUser',
             'password' => '1211060911gyz',
 
             // Optional FTP Settings...

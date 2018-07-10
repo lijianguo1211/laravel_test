@@ -30,6 +30,7 @@
                 </div>
                 <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
                     预览图：
+                    <a class="layui-btn" id="up">上传</a>
                     <div class="layui-upload-list" id="demo1"></div>
                 </blockquote>
                {{-- <input type="text" id="front_card" name="front_card" class="layui-input">--}}
@@ -44,6 +45,7 @@
                     </div>
                     <blockquote class="layui-elem-quote layui-quote-nm" style="margin-top: 10px;">
                         预览图：
+                        <a class="layui-btn" id="up1">上传</a>
                         <div class="layui-upload-list" id="demo2"></div>
                     </blockquote>
                     {{--<input type="tel" id="bank_card" name="bank_card" autocomplete="off" class="layui-input">--}}
@@ -54,8 +56,6 @@
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <a class="layui-btn" id="btns">立即注册</a>
-                <a class="layui-btn" id="up">测试</a>
-                <a class="layui-btn" id="up1">测试</a>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
