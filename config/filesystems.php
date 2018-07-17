@@ -101,26 +101,21 @@ return [
             'password' => '1211060911gyz',
 
             // Optional FTP Settings...
-            // 'port'     => 21,
+             'port'     => 21,
             // 'root'     => '',
-            // 'passive'  => true,
-            // 'ssl'      => true,
-            // 'timeout'  => 30,
+             'passive'  => true,
+             'ssl'      => true,
+             'timeout'  => 30,
         ],
         'sftp' => [
             'driver' => 'sftp',
-            'host' => 'example.com',
-            'username' => 'your-username',
-            'password' => 'your-password',
-
-            // Settings for SSH key based authentication...
-            // 'privateKey' => '/path/to/privateKey',
-            // 'password' => 'encryption-password',
-
-            // Optional SFTP Settings...
-            // 'port' => 22,
-            // 'root' => '',
-            // 'timeout' => 30,
+            'host' => '118.25.19.106',
+            'username' => 'root',
+            'password' => '1211060911gyz',
+            'privateKey' => '/path/to/privateKey',
+            'port' => 22,
+            'root' => '',
+            'timeout' => 30,
         ],
         'rackspace' => [
             'driver'    => 'rackspace',

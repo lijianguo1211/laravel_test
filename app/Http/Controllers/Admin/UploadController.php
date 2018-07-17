@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Config;
 use Anchu\Ftp\Ftp;
+use Illuminate\HTTP\File;
+use Illuminate\HTTP\UploadedFile;
 
 class UploadController extends BaseController
 {
@@ -76,11 +78,19 @@ class UploadController extends BaseController
     public function fileUploadFtp()
     {
 
-        $config = Config::get('ftp');
-        var_dump($config['connections']['connection1']);exit;
+        /*$config = Config::get('filesystems');
+        var_dump($config['default']);exit;*/
+        $config = [
+            'port' => 21,
+            'host' => '118.25.19.106',
+            'timeout' => 20,
+            'username' => 'adminUser',
+            'password' => '1211060911gyz',
+        ];
         //var_dump(new Ftp($config));exit;
-        $ftp = new Ftp($config['connections']['connection1']);
-        var_dump($ftp->makeDir('123'));
+        $ftp = new Ftp($config);
+        var_dump($ftp);
+       // var_dump($ftp->makeDir('admin1'));
     }
 
 }
