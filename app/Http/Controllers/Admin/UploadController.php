@@ -75,22 +75,11 @@ class UploadController extends BaseController
         return $prefix_name;
     }
 
-    public function fileUploadFtp()
+    public function fileUploadFtp(Request $request)
     {
-
-        /*$config = Config::get('filesystems');
-        var_dump($config['default']);exit;*/
-        $config = [
-            'port' => 21,
-            'host' => '118.25.19.106',
-            'timeout' => 20,
-            'username' => 'adminUser',
-            'password' => '1211060911gyz',
-        ];
-        //var_dump(new Ftp($config));exit;
-        $ftp = new Ftp($config);
-        var_dump($ftp);
-       // var_dump($ftp->makeDir('admin1'));
+        $file = $request->all();
+        dump($file);
+        Storage::disk('s3')->put('avatars/1', $fileContents);
     }
 
 }

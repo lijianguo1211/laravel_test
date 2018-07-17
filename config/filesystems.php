@@ -112,9 +112,9 @@ return [
             'host' => '118.25.19.106',
             'username' => 'root',
             'password' => '1211060911gyz',
-            'privateKey' => '/path/to/privateKey',
+            'privateKey' => storage_path('lijianguo.ppk'),
             'port' => 22,
-            'root' => '',
+            'root' => 'http://118.25.19.106/laravel_test/home/admin1/',
             'timeout' => 30,
         ],
         'rackspace' => [
