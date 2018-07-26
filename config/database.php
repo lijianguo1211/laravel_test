@@ -53,9 +53,12 @@ return [
                 'password_W' => env('DB_PASSWORD', ''),
             ],*/
 
-            'host' => env('DB_HOST_W', '127.0.0.1'),//主写
+            /*'host' => env('DB_HOST_W', '127.0.0.1'),//主写
             'username' => env('DB_USERNAME_W', 'forge'),
-            'password' => env('DB_PASSWORD_W', ''),
+            'password' => env('DB_PASSWORD_W', ''),*/
+            'host' => env('DB_HOST_R', '127.0.0.1'),//主写
+            'username' => env('DB_USERNAME_R', 'forge'),
+            'password' => env('DB_PASSWORD_R', ''),
             'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'forge'),
             'unix_socket' => env('DB_SOCKET', ''),
