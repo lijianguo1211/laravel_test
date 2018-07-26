@@ -56,6 +56,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('accessList','RoleController@accessList');
     Route::get('accessListAjax','RoleController@accessListAjax');
 
+    Route::get('test123','TestController@testRedis');
+
 
 });
 
