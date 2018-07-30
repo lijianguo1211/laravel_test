@@ -24,8 +24,8 @@ class BaseController extends Controller
     {
         $ch = curl_init();//初始化curl
         curl_setopt($ch, CURLOPT_URL, $url);//设置url属性
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_HEADER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);//curl_exec获取到的信息以字符串返回,不是直接输出
+        curl_setopt($ch, CURLOPT_HEADER, 0);//启用时会将头文件的信息作为数据流输出。
         $output = curl_exec($ch);//获取数据
         curl_close($ch);//关闭curl
         return $output;
