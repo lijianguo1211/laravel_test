@@ -28,13 +28,14 @@ trait RegistersUsers
      */
     public function register(Request $request)
     {
+        echo 0 . '-----------';
         $this->validator($request->all())->validate();
-
-        event(new Registered($user = $this->create($request->all())));
-
-        $this->guard()->login($user);
-
-        return $this->registered($request, $user)
+        echo 1 . '-----------';
+        event(new Registered($ui_user = $this->create($request->all())));
+        echo 2 . '-----------';
+        $this->guard()->login($ui_user);
+        echo 3 . '-----------';
+        return $this->registered($request, $ui_user)
                         ?: redirect($this->redirectPath());
     }
 

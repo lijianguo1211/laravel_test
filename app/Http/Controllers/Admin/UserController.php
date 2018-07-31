@@ -15,18 +15,35 @@ class UserController extends BaseController
 {
     private $mailer;
 
+    /**
+     * UserController constructor.
+     * @param \Illuminate\Mail\Mailer $mailer
+     */
     public function __construct(Mailer $mailer)
     {
         $this->mailer = $mailer;
     }
 
-    //后台登录
+    /**
+     * Notes:后台登录
+     * User: "LiJinGuo"
+     * Date: 2018/7/31
+     * Time: 20:19
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         return view('admin/user/index');
     }
 
-    //登录提交
+    /**
+     * Notes:登录提交
+     * User: "LiJinGuo"
+     * Date: 2018/7/31
+     * Time: 20:19
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function login(Request $request)
     {
         $user = $request->get('user');
@@ -44,7 +61,13 @@ class UserController extends BaseController
         return redirect('admin/index');
     }
 
-    //查看管理员列表
+    /**
+     * Notes:查看管理员列表
+     * User: "LiJinGuo"
+     * Date: 2018/7/31
+     * Time: 20:18
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
+     */
     public function list()
     {
         $user_list = User::select(['user_id','user_name','user_account','user_nickname','user_email','user_mobile'])->get();
@@ -53,14 +76,26 @@ class UserController extends BaseController
         return view('admin/user/list',compact('user_list'));
     }
 
-    //添加管理员
+    /**
+     * Notes:添加管理员显示
+     * User: "LiJinGuo"
+     * Date: 2018/7/31
+     * Time: 20:18
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function add()
     {
         //管理员添加页面
         return view('admin/user/add');
     }
 
-    //添加管理员提交
+    /**
+     * Notes:添加管理员处理
+     * User: "LiJinGuo"
+     * Date: 2018/7/31
+     * Time: 20:18
+     * @param \App\Http\Requests\StoreUserPost $request
+     */
     public function add_admin(StoreUserPost $request)
     {
         //验证数据,接收数据
@@ -96,6 +131,13 @@ class UserController extends BaseController
         $this->ajaxReturn(['status'=>1,'msg'=>'新增用户成功']);
     }
 
+    /**
+     * Notes:发送文本邮件
+     * User: "LiJinGuo"
+     * Date: 2018/7/31
+     * Time: 20:17
+     * @param $emailData
+     */
     public function sendText($emailData)
     {
         //此处为文本内容
@@ -108,6 +150,13 @@ class UserController extends BaseController
         return $tag;
     }
 
+    /**
+     * Notes:发送邮件
+     * User: "LiJinGuo"
+     * Date: 2018/7/31
+     * Time: 20:17
+     * @param \Illuminate\Http\Request $request
+     */
     public function passwordRetrieve(Request $request)
     {
         //邮件主题
@@ -129,6 +178,13 @@ class UserController extends BaseController
         }
     }
 
+    /**
+     * Notes:发送邮件视图
+     * User: "LiJinGuo"
+     * Date: 2018/7/31
+     * Time: 20:17
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function testEmail()
     {
         return view('admin/user/email');

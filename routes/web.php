@@ -67,7 +67,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('test4','TestController@index2');
     Route::get('test5','TestController@index3');
 
-
+    //后台登录
+    Route::get('indexLogin','AdminController@index');
 });
 
 Route::get('hello',function(){
