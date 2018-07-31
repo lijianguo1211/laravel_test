@@ -4,11 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Mail\Mailer;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redis;
 
-class TestController extends Controller
+class TestController extends BaseController
 {
     private $mailer;
 
@@ -106,5 +105,56 @@ class TestController extends Controller
         Redis::set('names','laravel-hello-world');
         $value = Redis::get('names');
         dd($value);
+    }
+
+    public function index1()
+    {
+        return view('admin/admin/index');
+    }
+
+    /**
+     * Notes:百度语音测试得到token
+     * User: "LiJinGuo"
+     * Date: 2018/7/31
+     * Time: 15:44
+     * @return bool
+     */
+    public function index2()
+    {
+        $url = 'https://openapi.baidu.com/oauth/2.0/token?grant_type=client_credentials&client_id=StbsLBfHfPwLUOafmopLOMPZ&client_secret=kUKK1GGA8jkBzF2r8kdDzTaqyxPDmAOR';
+        $result = $this->setCurlHttp($url,'','','');
+        $result = json_decode($result,true);
+        if ($result['expires_in'] != 2592000) {
+            return (json_last_error() == JSON_ERROR_NONE);
+        }
+        return $result['access_token'];
+    }
+
+    /**
+     * Notes:百度语音api接口合成语音测试
+     * User: "LiJinGuo"
+     * Date: 2018/7/31
+     * Time: 15:45
+     */
+    public function index3()
+    {
+        $token = $this->index2();
+        $tex = '我觉得完美的人生，是在少年时期就很老了，有一颗多愁善感，满是抬头纹的心，然后他慢慢长大，慢慢变得越来越年轻，年轻得像个无所畏惧的混蛋';
+        $tex = urlencode($tex);
+        $params = [
+            'lan' => 'zh',//固定值zh。语言选择,目前只有中英文混合模式，填写固定值zh
+            'ctp' => 1,//客户端类型选择，web端填写固定值1
+            'tok' => $token,//开放平台获取到的开发者access_token
+            'tex' => $tex,//合成的文本，使用UTF-8编码
+            'per' => 4,//发音人选择, 0为普通女声，1为普通男生，3为情感合成-度逍遥，4为情感合成-度丫丫，默认为普通女声
+            'spd' => 5,//语速，取值0-15，默认为5中语速
+            'pit' => 5,//音调，取值0-15，默认为5中语调
+            'aue' => 6,//3为mp3格式(默认)； 4为pcm-16k；5为pcm-8k；6为wav（内容同pcm-16k）
+            'cuid' => 'StbsLBfHfPwLUOafmopLOMPZ',//用户唯一标识，用来计算UV值。建议填写能区分用户的机器 MAC 地址或 IMEI 码，长度为60字符以内
+        ];
+        $params = http_build_query($params);
+        $url = 'https://tsn.baidu.com/text2audio?'.$params;
+        $result = $this->getCurlHttps($url);
+        dd($result);
     }
 }

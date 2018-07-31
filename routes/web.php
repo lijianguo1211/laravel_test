@@ -63,6 +63,9 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('mail1','TestController@saveEmail');
     Route::get('test2','TestController@test2');
     Route::get('indexSave','TestController@index');
+    Route::get('test3','TestController@index1');
+    Route::get('test4','TestController@index2');
+    Route::get('test5','TestController@index3');
 
 
 });
