@@ -79,7 +79,7 @@ class TestController extends Controller
             'addr' => '270326786@qq.com',//邮件接收地址
         ];
         $emailData = [
-            'subject' => '小珍珍',//邮件主题
+            'subject' => '光年之外',//邮件主题
             'addr' => '270326786@qq.com',//邮件接收地址
         ];
         //$result = $this->sendText($emailData);

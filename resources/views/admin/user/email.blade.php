@@ -14,13 +14,13 @@
         <div class="layui-form-item">
             <label class="layui-form-label">邮件主题</label>
             <div class="layui-input-block">
-                <input type="email" name="subject" id="subject" class="layui-input">
+                <input type="text" name="subject" id="subject" class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item">
+        <div class="layui-form-item layui-form-text">
             <label class="layui-form-label">邮件内容</label>
             <div class="layui-input-block">
-                <input type="email" name="content" id="content" class="layui-input">
+                <textarea placeholder="请输入内容" class="layui-textarea" name="content" id="content"></textarea>
             </div>
         </div>
         <div class="layui-form-item">
@@ -43,7 +43,13 @@
                     data:$("form").serialize(),
                     dataType:"json",
                     success:function(res) {
-                        console.log(123);
+                        console.log(res);
+                        if(res.status == 0) {
+                            layer.msg(res.msg,{icon:2})
+                        } else {
+                            layer.msg(res.msg,{icon:1})
+                            /* //location.href = "";*/
+                        }
                     }
                 });
             });

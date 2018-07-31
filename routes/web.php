@@ -17,6 +17,8 @@ Route::get('/', function () {
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('log','UserController@index');//后台登录
     Route::post('doLogin','UserController@login');//登录提交
+    Route::get('testEmail','UserController@testEmail');//显示发送邮件模板
+    Route::post('passwordRetrieve','UserController@passwordRetrieve');//发送邮件
     Route::get('index','IndexController@index');//首页
     Route::get('list','UserController@list');//管理员列表
     Route::get('adduser','UserController@add');//添加管理员显示

@@ -6,11 +6,20 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
 use App\Models\User;
 use App\Http\Requests\StoreUserPost;
+use Illuminate\Mail\Mailer;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends BaseController
 {
+    private $mailer;
+
+    public function __construct(Mailer $mailer)
+    {
+        $this->mailer = $mailer;
+    }
+
     //后台登录
     public function index()
     {
@@ -85,5 +94,43 @@ class UserController extends BaseController
             $this->ajaxReturn(['status'=>0,'msg'=>'新增用户失败']);
         }
         $this->ajaxReturn(['status'=>1,'msg'=>'新增用户成功']);
+    }
+
+    public function sendText($emailData)
+    {
+        //此处为文本内容
+        $tag = $this->mailer
+            ->raw($emailData['content'],
+                function ($message)use ($emailData){
+                    $message->subject($emailData['subject']);
+                    $message->to($emailData['addr']);
+                });
+        return $tag;
+    }
+
+    public function passwordRetrieve(Request $request)
+    {
+        //邮件主题
+        $subject = $request->get('subject');
+        //邮件内容
+        $content = $request->get('content');
+        //邮件发送地址
+        $address = $request->get('address');
+        $data = [
+            'content'  => $content,
+            'subject'  => $subject,
+            'addr'     => $address,
+        ];
+        $result = $this->sendText($data);
+        if ($result) {
+            $this->ajaxReturn(['status'=>0,'msg'=>'发送失败']);
+        } else {
+            $this->ajaxReturn(['status'=>1,'msg'=>'发送成功']);
+        }
+    }
+
+    public function testEmail()
+    {
+        return view('admin/user/email');
     }
 }
