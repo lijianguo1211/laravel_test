@@ -40,11 +40,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-sm-8 col-sm-offset-2 text">
-                    <h1><strong>Bootstrap</strong> Login Form</h1>
+                    <h1><strong>Admin</strong> test form</h1>
                     <div class="description">
                         <p>
-                            This is a free responsive login form made with Bootstrap.
-                            Download it on <a href="#"><strong>AZMIND</strong></a>, customize and use it as you like!
+                            有一天，你辉煌了，一定要有个好身体，才能享受人生 ，有一天，你落魄了，还得有个好身体，才能东山再起！ <a href="#"><strong>Admin</strong></a>开始吧!
                         </p>
                     </div>
                 </div>
@@ -53,40 +52,38 @@
                 <div class="col-sm-6 col-sm-offset-3 form-box">
                     <div class="form-top">
                         <div class="form-top-left">
-                            <h3>Login to our site</h3>
-                            <p>Enter your username and password to log on:</p>
+                            <h3>Register</h3>
+                            <p>Love is not a maybe thing. You know when you love someone</p>
                         </div>
                         <div class="form-top-right">
                             <i class="fa fa-key"></i>
                         </div>
                     </div>
                     <div class="form-bottom">
-                        <form role="form" action="" method="post" class="login-form">
+                        <form action="{{ url('admin/registerAdmin') }}" method="post" class="login-form">
                             <div class="form-group">
                                 <label class="sr-only" for="form-username">Username</label>
-                                <input type="text" name="form-username" placeholder="Username..." class="form-username form-control" id="form-username">
+                                <input type="text" name="form-username" placeholder="用户名.手机号.邮箱..." class="form-username form-control" id="form-username">
                             </div>
                             <div class="form-group">
                                 <label class="sr-only" for="form-password">Password</label>
-                                <input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">
+                                <input type="password" name="form-password" placeholder="密码..." class="form-password form-control" id="form-password">
                             </div>
-                            <button type="submit" class="btn">Sign in!</button>
+                            @csrf
+                            <input type="submit" class="btn" value="登录">
                         </form>
                     </div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3 social-login">
-                    <h3>...or login with:</h3>
+                    <h3>第三方登录:</h3>
                     <div class="social-login-buttons">
                         <a class="btn btn-link-1 btn-link-1-facebook" href="#">
-                            <i class="fa fa-facebook"></i> Facebook
+                            <i class="fa fa-facebook"></i> GitHub
                         </a>
                         <a class="btn btn-link-1 btn-link-1-twitter" href="#">
-                            <i class="fa fa-twitter"></i> Twitter
-                        </a>
-                        <a class="btn btn-link-1 btn-link-1-google-plus" href="#">
-                            <i class="fa fa-google-plus"></i> Google Plus
+                            <i class="fa fa-twitter"></i> QQ
                         </a>
                     </div>
                 </div>
@@ -95,7 +92,7 @@
     </div>
 
 </div>
-<div class="copyrights">Collect from <a title="网站模板">测试</a></div>
+<div class="copyrights">登录 <a title="TEST">测试</a></div>
 
 
 <!-- Javascript -->
@@ -107,7 +104,11 @@
 <!--[if lt IE 10]>
 <script src="assets/js/placeholder.js"></script>
 <![endif]-->
-
+<script>
+    jQuery(document).ready(function() {
+        $.backstretch("{{URL::asset('/login/assets/img/backgrounds/1.jpg')}}");
+    })
+</script>
 </body>
 
 </html>
