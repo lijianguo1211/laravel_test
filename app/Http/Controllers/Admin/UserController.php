@@ -113,16 +113,18 @@ class UserController extends BaseController
         if(!$this->regexMobile($user_mobile)) {
             $this->ajaxReturn(['status'=>0,'msg'=>'手机号格式不对']);
         }
+        $key = User::getPwdKey();
         $data = [
             'user_name'      => $user_name,
             'user_account'   => $user_account,
             'user_nickname'  => $user_nickname,
             'user_mobile'    => $user_mobile,
             'user_email'     => $user_email,
-            'user_pwd'       => Hash::make($user_pwd),
+            'user_pwd'       => Hash::make($user_pwd.config('password_key').$key),
             'user_type'      => $user_type,
             'user_logtime'   => date('Y-m-d H:i:s',time()),
             'user_ip'        => $request->getClientIp(),
+            'user_key'       => $key,
         ];
         $result = User::create($data);
         if(!$result) {

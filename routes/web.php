@@ -70,6 +70,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     //后台登录
     Route::get('indexLogin','AdminController@index');//视图显示
     Route::post('registerAdmin','AdminController@registerAdmin');//登录提交
+    Route::get('logout','AdminController@logout');//退出登录
+    Route::get('logoImg','AdminController@logoImg');//用户设置自己的图像
 
 });
 

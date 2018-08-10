@@ -4,7 +4,7 @@ jQuery(document).ready(function() {
     /*
         Fullscreen background
     */
-    $.backstretch("{{URL::asset('/login/assets/img/backgrounds/1.jpg')}}");
+    //$.backstretch("{{URL::asset('/login/assets/img/backgrounds/1.jpg')}}");
     
     /*
         Form validation

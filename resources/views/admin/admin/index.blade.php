@@ -48,6 +48,7 @@
                     </div>
                 </div>
             </div>
+            @include('admin/layout/msg')
             <div class="row">
                 <div class="col-sm-6 col-sm-offset-3 form-box">
                     <div class="form-top">

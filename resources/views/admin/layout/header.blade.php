@@ -19,12 +19,13 @@
         <li class="layui-nav-item">
             <a href="javascript:;">
                 {{--<img src="" class="layui-nav-img">--}}
-                admin
+                {{ Session::get('admin') }}
             </a>
             <dl class="layui-nav-child">
                 <dd><a href="">基本资料</a></dd>
                 <dd><a href="">安全设置</a></dd>
-                <dd><a href="">退出</a></dd>
+                <dd><a href="{{ url('admin/logoImg') }}">设置图像</a></dd>
+                <dd><a href="{{ url('admin/logout') }}">退出</a></dd>
             </dl>
         </li>
         {{--<li class="layui-nav-item"><a href="">退了</a></li>--}}

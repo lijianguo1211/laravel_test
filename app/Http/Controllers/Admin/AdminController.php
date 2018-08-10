@@ -5,9 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Requests\StoreAdminPost;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends BaseController
 {
+   /* public function __construct() {
+        $this->beforeFilter('csrf', array('on'=>'post'));
+    }*/
+
     //后台登录
     /**
      * Notes:后台登录界面显示
@@ -21,6 +28,14 @@ class AdminController extends BaseController
         return view('admin/admin/index');
     }
 
+    /**
+     * Notes:后台登录逻辑处理
+     * User: "LiJinGuo"
+     * Date: 2018/8/10
+     * Time: 14:08
+     * @param \Illuminate\Http\Request $request
+     * @return $this|\Illuminate\Http\RedirectResponse
+     */
     public function registerAdmin(Request $request)
     {
         //接收数据StoreAdminPost
@@ -63,13 +78,45 @@ class AdminController extends BaseController
                 break;
         }
         //查询是否存在此条记录
-        $result = (new User())->select('user_pwd')->where($where,'=',$key)->first();
+        $result = (new User())->select(['user_pwd','user_key'])->where($where,'=',$key)->first();
+
         if (!$result) {
-            return back()->with(['status'=>0,'msg'=>'不存在该用户']);
+            return Redirect::to('admin/indexLogin')->with('error', '不存在该用户')->withInput();
         }
-        if ($result->user_pwd != $value) {
-            return back()->with(['status'=>0,'msg'=>'密码输入不正确']);
+
+        $value = Hash::check($value.config('password_key').$result->user_key,$result->user_pwd);
+
+        if ($value === false) {
+            return Redirect::to('admin/indexLogin')->with('error', '密码输入不正确')->withInput();
         }
-        return redirect('admin/index');
+        if (!Session::has('admin') && !Session::has('admin_key')) {
+            Session::put('admin',$key);
+            Session::put('admin_id',$result->user_id);
+            Session::put('admin_key',$result->user_key);
+        }
+        return Redirect::to('admin/index')->with('success', '欢迎登录');
+    }
+
+    /**
+     * Notes:退出登录
+     * User: "LiJinGuo"
+     * Date: 2018/8/10
+     * Time: 16:46
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function logout()
+    {
+        if (!Session::has('admin') && !Session::has('admin_key') && !Session::has('admin_id')) {
+            return back()->with(['status'=>0,'msg'=>'该用户已经退出登录']);
+        }
+        Session::forget('admin');
+        Session::forget('admin_id');
+        Session::forget('admin_key');
+        return Redirect::to('admin/indexLogin')->with('success', '欢迎登录');
+    }
+
+    public function logoImg()
+    {
+        return view('admin/admin/img');
     }
 }
