@@ -24,10 +24,40 @@
             <dl class="layui-nav-child">
                 <dd><a href="">基本资料</a></dd>
                 <dd><a href="">安全设置</a></dd>
-                <dd><a href="{{ url('admin/logoImg') }}">设置图像</a></dd>
+                <dd><a onclick="imgFun()" href="javascript:void(0)">设置图像</a></dd>
                 <dd><a href="{{ url('admin/logout') }}">退出</a></dd>
             </dl>
         </li>
         {{--<li class="layui-nav-item"><a href="">退了</a></li>--}}
     </ul>
 </div>
+
+<script>
+   function imgFun() {
+       //如果是iframe层
+       layer.open({
+           type: 2,
+           title:'修改图像',
+           content:"{{ url('admin/logoImg') }}", //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+           area: ['500px','600px'],
+           btn: ['按钮一', '按钮二'],
+           yes: function(index, layero){
+
+           },
+           btn2: function(index, layero){
+
+           },
+           cancel: function(){
+
+           },
+           btnAlign: 'c',
+           anim: 1,
+           maxmin:true,
+           success: function(layero, index){
+               console.log(layero, index);
+           }
+       });
+   }
+
+
+</script>
