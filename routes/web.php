@@ -73,6 +73,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('logout','AdminController@logout');//退出登录
     Route::get('logoImg','AdminController@logoImg');//用户设置自己的图像
 
+    //系统工具
+    Route::get('sizeMoney','SystemController@sizeMoney');
+    Route::post('ajaxSizeMoney','SystemController@ajaxSizeMoney');
+    Route::get('computer','SystemController@computer');
+
 });
 
 Route::get('hello',function(){

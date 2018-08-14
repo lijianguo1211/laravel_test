@@ -36,6 +36,13 @@
                     <dd><a href="{{url('admin/bd/index')}}">语音合成</a></dd>
                 </dl>
             </li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">系统工具</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="{{ url('admin/sizeMoney') }}">大小写转换</a></dd>
+                    <dd><a href="{{ url('admin/computer') }}">计算器</a></dd>
+                </dl>
+            </li>
         </ul>
     </div>
 </div>
