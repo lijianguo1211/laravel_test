@@ -8,7 +8,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">小写</label>
             <div class="layui-input-inline">
-                <input type="text" name="xiao" id="xiao" class="layui-input">
+                <input type="number" name="xiao" id="xiao" class="layui-input">
             </div>
         </div>
 
@@ -31,13 +31,18 @@
 @section('js')
     <script>
         function getSize() {
-            console.log('getsize');
             $.ajax({
                 url:"{{ url('admin/ajaxSizeMoney') }}",
                 type:"post",
                 data:$("#form").serialize(),
                 success:function(res) {
-                    console.log(res);
+                    //数据转换
+                    var obj = JSON.parse(res);
+                    if (obj.status == 0) {
+                        layer.msg(obj.msg,{icon:5});
+                    } else {
+                        $("#da").val(obj.result);
+                    }
                 }
             });
         };

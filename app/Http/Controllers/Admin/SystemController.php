@@ -21,6 +21,10 @@ class SystemController extends Controller
         9   => '玖',
     ];
 
+    /**
+     * @param String $str
+     * @return array
+     */
     protected function getSize(String $str)
     {
         $len = strlen($str);
@@ -64,18 +68,37 @@ class SystemController extends Controller
         return $result;
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function sizeMoney()
     {
         return view('admin/system/sizeMoney');
     }
 
+    /**
+     * @param Request $request
+     */
     public function ajaxSizeMoney(Request $request)
     {
+        if (!$request->ajax()) {
+            $this->ajaxReturn(['status'=>0,'msg'=>'数据提交方式错误']);
+        }
         $info = $request->get('xiao');
-        $result = $this->getSize($info);
-        dd($result);
-
+        if (!isset($info)) {
+            $this->ajaxReturn(['status'=>0,'msg'=>'请输入需要转换的数值']);
+        }
+        //把接收到的值转换为int类型
+        $key = (int)$info;
+        $result = $this->getSize($key);
+        if (!is_array($result)) {
+            $this->ajaxReturn(['status'=>0,'msg'=>'数据转换错误']);
+        }
+        //把数组的值全部赋值到字符串
+        $arr = '';
+        foreach ($result as $key => $value) {
+            $arr .= $value;
+        }
+        $this->ajaxReturn(['status'=>1,'result'=>$arr]);
     }
-
-
 }
