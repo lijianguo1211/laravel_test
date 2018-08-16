@@ -74,9 +74,10 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('logoImg','AdminController@logoImg');//用户设置自己的图像
 
     //系统工具
-    Route::get('sizeMoney','SystemController@sizeMoney');
-    Route::post('ajaxSizeMoney','SystemController@ajaxSizeMoney');
-    Route::get('computer','SystemController@computer');
+    Route::get('sizeMoney','SystemController@sizeMoney');//大小写转换页面
+    Route::post('ajaxSizeMoney','SystemController@ajaxSizeMoney');//大小写转换提交
+    Route::get('computer','SystemController@computer');//计算器显示页面
+    Route::post('ajaxComputer','SystemController@ajaxComputer');//计算器运算提交
 
 });
 

@@ -101,4 +101,58 @@ class SystemController extends Controller
         }
         $this->ajaxReturn(['status'=>1,'result'=>$arr]);
     }
+
+    public function computer()
+    {
+        return view('admin/system/computer');
+    }
+
+    public function ajaxComputer(Request $request)
+    {
+        //判断提交方式
+        if (!$request->ajax()) {
+            $this->ajaxReturn(['status'=>0,'msg'=>'数据提交方式不对']);
+        }
+        //接收全部的值
+        $info = $request->all();
+        if (!isset($info['symbol']) || !isset($info['value1']) || !isset($info['value2'])) {
+            $this->ajaxReturn(['status'=>0,'msg'=>'请选择要计算的数值或类型']);
+        }
+        $symbol = $info['symbol'];
+        $value1 = $info['value1'];
+        $value2 = $info['value2'];
+        $result = '';
+        switch ($symbol) {
+            case 0:
+                //加法
+                $result = bcadd($value1,$value2);
+                break;
+            case 1:
+                //减法
+                $result = bcsub($value1,$value2);
+                break;
+            case 2:
+                //乘法
+                $result = bcmul($value1,$value2);
+                break;
+            case 3:
+                //除法
+                $result = bcdiv($value1,$value2,2);
+                break;
+            case 4:
+                //求余
+                $result = bcmod($value1,$value2);
+                break;
+            case 5:
+                //平方根
+                //$result = bcpow($value1,$value2);
+                $this->ajaxReturn(['status'=>0,'msg'=>'后续功能还在开发中']);
+                break;
+            case 6:
+                //次方
+                $result =bcpow($value1,$value2,2);
+                break;
+        }
+        $this->ajaxReturn(['status'=>1,'result'=>$result]);
+    }
 }
