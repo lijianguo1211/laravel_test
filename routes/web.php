@@ -79,6 +79,8 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('computer','SystemController@computer');//计算器显示页面
     Route::post('ajaxComputer','SystemController@ajaxComputer');//计算器运算提交
 
+    Route::get('tianjia','UserController@tianjia');//测试调度任务
+
 });
 
 Route::get('hello',function(){

@@ -49,6 +49,9 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             Log::info('任务调度');
         })->everyMinute();
+        $schedule->call(function () {
+            dd('123');
+        })->everyMinute();
     }
 
     /**
