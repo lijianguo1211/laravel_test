@@ -14,7 +14,11 @@ class Kernel extends ConsoleKernel
      * @var arrayphp
      */
     protected $commands = [
-        //
+        App\Console\Commands\Inspire::class,
+
+        //通过命令执行可以执行定时
+        App\Console\Commands\PushEmailCampaign::class,
+
     ];
 
     /**
@@ -42,6 +46,9 @@ class Kernel extends ConsoleKernel
                 'createtime' => time(),
             ];
             DB::table('ui_test')->insert($data);
+        })->everyMinute();
+        $schedule->call(function () {
+            Log::info('任务调度');
         })->everyMinute();
     }
 
