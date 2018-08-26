@@ -2,6 +2,7 @@
 
 namespace App\Console;
 
+use App\Models\Test;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\DB;
@@ -44,7 +45,8 @@ class Kernel extends ConsoleKernel
                 'updatetime' => time(),
                 'createtime' => time(),
             ];
-            DB::table('test')->insert($data);
+
+            (new Test())->create($data);
         })->everyTenMinutes()->between('20:00', '23:00');
     }
 

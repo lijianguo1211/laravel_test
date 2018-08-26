@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Test;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Admin\BaseController;
 use App\Models\User;
@@ -206,8 +207,8 @@ class UserController extends BaseController
             'updatetime' => time(),
             'createtime' => time(),
         ];
-        if (DB::table('test')->insert($data)) {
-            echo '1';
+        if ((new Test())->create($data)) {
+            echo 1;
         } else {
             echo 2;
         };
