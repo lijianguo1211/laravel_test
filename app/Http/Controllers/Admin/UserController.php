@@ -200,12 +200,17 @@ class UserController extends BaseController
             'sex'        => mt_rand(0,1),
             'age'        => mt_rand(10,99),
             'class'      => '三年级'.mt_rand(1,10).'班',
-            'bobby'      => '打球，写字，散步'.mt_rand(0,10000),
+            'hobby'      => '打球，写字，散步'.mt_rand(0,10000),
             'email'      => '15398533'.mt_rand(10,99).'@qq.com',
             'mobile'     => '15971896'.mt_rand(100,999),
             'updatetime' => time(),
             'createtime' => time(),
         ];
-        DB::table('test')->insert($data);
+        if (DB::table('test')->insert($data)) {
+            echo '1';
+        } else {
+            echo 2;
+        };
+
     }
 }
