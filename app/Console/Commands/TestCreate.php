@@ -39,6 +39,15 @@ class TestCreate extends Command
      */
     public function handle()
     {
-        //
+        $a = 1;
+        if($a)
+        {
+            $b = '成功';
+        }else{
+            $b = '失败';
+        }
+        print "\nYiErSan";
+        print("\n这是我写的log".time().$b);
+
     }
 }

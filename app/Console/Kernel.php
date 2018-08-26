@@ -33,6 +33,7 @@ class Kernel extends ConsoleKernel
 //         $schedule->command('inspire')
 //                  ->hourly();
         //$filePath = __DIR__.mt_rand(0,1000);->sendOutputTo($filePath)
+        $schedule->command('testconsole')->everyMinute()->appendOutputTo('test.txt');
         $schedule->call(function(){
             $data = [
                 'username'   => 'TSET_'.mt_rand(1000,9999),
