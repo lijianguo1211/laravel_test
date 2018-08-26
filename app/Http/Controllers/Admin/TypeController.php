@@ -97,7 +97,9 @@ class TypeController extends Controller
         return view('admin/type/show',compact('type_list'));
     }
 
-    //删除分类
+    /**
+     * @param $id
+     */
     public function del($id)
     {
         //先查询是否有记录,在查询它下面是否有子分类,如果有子分类,就给一个异常

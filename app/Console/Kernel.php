@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\DB;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,8 +25,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+//         $schedule->command('inspire')
+//                  ->hourly();
+        //$filePath = __DIR__.mt_rand(0,1000);->sendOutputTo($filePath)
+        $schedule->call(function(){
+            DB::table('ui_user')->count();
+        })->everyMinute();
     }
 
     /**
