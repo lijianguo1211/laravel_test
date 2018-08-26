@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
        /* App\Console\Commands\Inspire::class,
         //通过命令执行可以执行定时
         App\Console\Commands\PushEmailCampaign::class,*/
+        App\Console\Commands\TestCreate::class,
 
     ];
 
@@ -33,7 +34,7 @@ class Kernel extends ConsoleKernel
 //         $schedule->command('inspire')
 //                  ->hourly();
         //$filePath = __DIR__.mt_rand(0,1000);->sendOutputTo($filePath)
-        $schedule->command('testconsole')->everyMinute()->appendOutputTo('test.txt');
+        $schedule->command('test_create')->everyMinute()->appendOutputTo('test.txt');
         $schedule->call(function(){
             $data = [
                 'username'   => 'TSET_'.mt_rand(1000,9999),
@@ -48,7 +49,7 @@ class Kernel extends ConsoleKernel
             ];
 
             (new Test())->create($data);
-        })->everyTenMinutes()->between('20:00', '23:00');
+        })->everyTenMinutes()->between('20:00', '02:00');
     }
 
     /**
