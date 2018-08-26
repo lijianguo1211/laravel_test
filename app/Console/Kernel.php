@@ -15,7 +15,6 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         App\Console\Commands\Inspire::class,
-
         //通过命令执行可以执行定时
         App\Console\Commands\PushEmailCampaign::class,
 
