@@ -206,6 +206,6 @@ class UserController extends BaseController
             'updatetime' => time(),
             'createtime' => time(),
         ];
-        DB::table('ui_test')->insert($data);
+        DB::table('test')->insert($data);
     }
 }
