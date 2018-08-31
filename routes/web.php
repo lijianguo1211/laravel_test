@@ -14,6 +14,12 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['namespace'=>'Common','prefix'=>'common'],function(){
+    Route::get('index','TestController@index');
+    Route::get('test','TestController@test');
+});
+
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
     Route::get('log','UserController@index');//后台登录
     Route::post('doLogin','UserController@login');//登录提交
