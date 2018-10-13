@@ -14,7 +14,7 @@
 }*/
     for ($i=0; $i<=100000000000000;$i++) {
         sleep(10);
-        $file = __DIR__ . '/public/test/1.txt';
+        $file = __DIR__ . '/public/1.txt';
         file_put_contents($file, $i, FILE_APPEND | LOCK_EX);
     }
 
