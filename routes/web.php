@@ -18,6 +18,7 @@ Route::get('/', function () {
 Route::group(['namespace'=>'Common','prefix'=>'common'],function(){
     Route::get('index','TestController@index');
     Route::get('test','TestController@test');
+    Route::get('indexSsh','TestSshController@index');
 });
 
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
