@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 
 Route::group(['namespace'=>'Common','prefix'=>'common'],function(){
     Route::get('index','TestController@index');
@@ -21,7 +21,7 @@ Route::group(['namespace'=>'Common','prefix'=>'common'],function(){
 });
 
 Route::group(['prefix'=>'admin','namespace'=>'Admin'],function(){
-    Route::get('log','UserController@index');//后台登录
+    Route::get('/','UserController@index');//后台登录
     Route::post('doLogin','UserController@login');//登录提交
     Route::get('testEmail','UserController@testEmail');//显示发送邮件模板
     Route::post('passwordRetrieve','UserController@passwordRetrieve');//发送邮件
