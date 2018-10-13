@@ -18,3 +18,8 @@
         file_put_contents($file, $i, FILE_APPEND | LOCK_EX);
     }
 
+/**
+ * laravel 中查看sql原生语句
+ */
+
+
